@@ -41,13 +41,8 @@ int main(int argc, char *argv[])
 	// Set random seed
 	srand(seed > 0 ? seed : time(NULL));
 
-	// Maze data structure, flattened 3d array
-	// x/y coords for cells, z is the cell wall info
-	vector<bool> maze(rows * cols * 2, true);
-	vector<bool> visited(rows * cols, false);
-
 	// Make maze
-	Backtrack::Generate(maze, visited, cols, rows);
+	vector<bool> maze = Backtrack::Generate(cols, rows);
 
 	// Print with separators
 	for (int y = 0; y < rows; y++) {

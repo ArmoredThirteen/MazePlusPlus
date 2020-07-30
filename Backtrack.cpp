@@ -14,8 +14,12 @@ using namespace std;
  * Eventually it bubbles up to a cell where there is another adjacent unvisited cell.
  * Keeps doing this until it bubbles all the way back up and recursion ends.
  */
-void Backtrack::Generate(vector<bool> &maze, vector<bool> &visited, int xLen, int yLen) {
+vector<bool> Backtrack::Generate(int xLen, int yLen) {
+	vector<bool> maze(xLen * yLen * 2, true);
+	vector<bool> visited(xLen * yLen, false);
 	Backtrack::Recurse(maze, visited, xLen, yLen, 0, 0);
+
+	return maze;
 }
 
 void Backtrack::Recurse(vector<bool> &maze, vector<bool> &visited, int xLen, int yLen, int x, int y) {

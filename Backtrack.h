@@ -4,7 +4,7 @@ using namespace std;
 
 
 class Backtrack {
-	public: static void Generate(vector<bool> &maze, vector<bool> &visited, int rows, int cols);
+	public: static vector<bool> Generate(int rows, int cols);
 	private: static void Recurse(vector<bool> &maze, vector<bool> &visited, int rows, int cols, int x, int y);
 	private: static bool IsIndexValid(int rows, int cols, int x, int y);
 	private: static bool IsVisited(vector<bool> &visited, int xLen, int x, int y);

@@ -1,12 +1,11 @@
 #include <iostream>
-#include <cstdlib>
-#include <vector>
 #include <stdio.h>  /* printf, NULL */
 #include <stdlib.h> /* srand, rand */
 #include <time.h>   /* time */
 #include "Backtrack.h"
 
-using namespace std;
+using std::cout;
+using std::vector;
 
 
 /*

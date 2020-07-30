@@ -1,9 +1,7 @@
-#include <iostream>
-#include <vector>
 #include <stdlib.h> /* srand, rand */
 #include "Backtrack.h"
 
-using namespace std;
+using std::vector;
 
 
 /*

@@ -1,18 +1,21 @@
+#include <stdexcept>
+#include <stdio.h>  /* printf, NULL */
 #include <stdlib.h> /* srand, rand */
 #include "Backtrack.h"
 
 using std::vector;
+using std::invalid_argument;
 
 
 /*
- * Generates a maze using a recursive backtrack method.
+ * Attempts to generate a maze using a recursive backtrack method.
  * Crawler randomly moves to an adjacent cell and marks it visited.
  * As it moves, appropriate walls are knocked down.
  * Once it has no unvisited choices, it bubbles up.
  * Eventually it bubbles up to a cell where there is another adjacent unvisited cell.
  * Keeps doing this until it bubbles all the way back up and recursion ends.
  */
-vector<bool> Backtrack::Generate(int xLen, int yLen) {
+vector<bool> Backtrack::Generate(int xLen, int yLen, int argc, char *argv[]) {
 	vector<bool> maze(xLen * yLen * 2, true);
 	vector<bool> visited(xLen * yLen, false);
 	Backtrack::Recurse(maze, visited, xLen, yLen, 0, 0);

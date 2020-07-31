@@ -7,7 +7,8 @@
 	$escapeCols = escapeshellarg($cols);
 	$escapeSeed = escapeshellarg($seed);
 
-	exec("./a.out $escapeRows $escapeCols $escapeSeed", $out, $return);
+	// seed, xLen, yLen
+	exec("./a.out backtrack $escapeSeed $escapeCols $escapeRows", $out, $return);
 
 	if ($return) {
 		echo "Generation failed :'(";

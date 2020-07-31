@@ -1,10 +1,7 @@
-#include <stdexcept>
-#include <stdio.h>  /* printf, NULL */
 #include <stdlib.h> /* srand, rand */
 #include "Backtrack.h"
 
 using std::vector;
-using std::invalid_argument;
 
 
 /*

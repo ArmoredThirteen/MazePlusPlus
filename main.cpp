@@ -18,7 +18,7 @@ using std::string;
 int main(int argc, char *argv[])
 {
 	// Verify argument count (first arg is execution path)
-	if (argc < 4) {
+	if (argc < 5) {
 		cout << "Generation requires at least 4 arguments: [(string)genMethod, (int)seed, (int)xLen, (int)yLen]";
 		return -1;
 	}

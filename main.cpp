@@ -43,13 +43,14 @@ int main(int argc, char *argv[])
 	srand(seed > 0 ? seed : time(NULL));
 
 	//TODO: Create additionalArgs count and array
-	//		Trim argv to only include index 5 and later
+	//		This sub-array should only include the argv values at index 5 and up
 
 	// Make maze
-	// TODO: Maybe set function pointer here then do the actual maze creation after if/else
+	//TODO: Maybe set function pointer here then do the actual maze creation after if/else
+	//		Using data from the mentioned sub-array, which only has data for different generator types
 	vector<bool> maze;
 	if (genMethod == "backtrack")
-		maze = Backtrack::Generate(xLen, yLen, argc - 5, NULL);
+		maze = Backtrack::Generate(xLen, yLen/*, subArrayLen, subArray*/);
 	else {
 		cout << "Could not find given maze generation method: " << argv[1];
 		return -1;

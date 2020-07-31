@@ -5,7 +5,7 @@
 
 
 class Backtrack {
-public: static std::vector<bool> Generate(int xLen, int yLen, int argc, char *argv[]);
+public: static std::vector<bool> Generate(int xLen, int yLen/*, int argc, char *argv[]*/);
 private: static void Recurse(std::vector<bool> &maze, std::vector<bool> &visited, int rows, int cols, int x, int y);
 private: static bool IsIndexValid(int rows, int cols, int x, int y);
 private: static bool IsVisited(std::vector<bool> &visited, int xLen, int x, int y);

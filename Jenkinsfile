@@ -27,18 +27,10 @@ pipeline {
 				script {
 					echo "Deploy"
 					
-					sh "scp ./main.cpp jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+					// PHP pages
 					
-					/*withCredentials([usernamePassword(credentialsId: 'GameSaveJenkinsBuild', passwordVariable: 'pass', usernameVariable: 'user')]) {
-						def remote = [:]
-						remote.name = '174.138.54.72'
-						remote.host = '174.138.54.72'
-						remote.user = user
-						remote.password = pass
-						remote.allowAnyHosts = true
-						sshCommand remote: remote, command: "ls"
-					}*/
-					
+					scpToMazeGen('./main.cpp')
+					//sh "scp ./main.cpp jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
 				}
 			}
 		}
@@ -52,4 +44,8 @@ pipeline {
 			//TODO: Unmount container or whatever
 		}
 	}
+}
+
+void scpToMazeGen (string filename) {
+	sh 'scp ${filename} jenkinsbuild@174.138.54.72:/var/www/html/MazeGen'
 }

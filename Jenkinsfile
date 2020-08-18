@@ -22,19 +22,20 @@ pipeline {
 			}
 		}*/
 		
-		withCredentials([usernamePassword(credentialsId: 'GameSaveJenkinsBuild', passwordVariable: 'pass', usernameVariable: 'user')]) {
 		stage('Deploy') {
 			steps {
-				echo "Deploy"
-				
-				
-					def remote = [:]
-					remote.name = '174.138.54.72'
-					remote.host = '174.138.54.72'
-					remote.user = $user
-					remote.password = $pass
-					remote.allowAnyHosts = true
-					sshCommand remote: remote, command: "ls"
+				script {
+					echo "Deploy"
+					
+					withCredentials([usernamePassword(credentialsId: 'GameSaveJenkinsBuild', passwordVariable: 'pass', usernameVariable: 'user')]) {
+						def remote = [:]
+						remote.name = '174.138.54.72'
+						remote.host = '174.138.54.72'
+						remote.user = $user
+						remote.password = $pass
+						remote.allowAnyHosts = true
+						sshCommand remote: remote, command: "ls"
+					}
 				}
 			}
 		}

@@ -20,12 +20,25 @@ pipeline {
 			steps {
 				echo "Test"
 			}
-		}
-		stage('Deploy') {
-			steps {
-				echo "Deploy"
-			}
 		}*/
+		
+		stage('Deploy') {
+			withCredentials([usernamePassword(credentialsId: 'GameSaveJenkinsBuild', passwordVariable: 'pass', usernameVariable: 'user')]) {
+				// the code in here can access $pass and $user
+				steps {
+					echo "Deploy"
+					
+					def remote = [:]
+					remote.name = '174.138.54.72'
+					remote.host = '174.138.54.72'
+					remote.user = $user
+					remote.password = $pass
+					remote.allowAnyHosts = true
+					sshCommand remote: remote, command: "ls"
+				}
+			}
+			
+		}
 	}
 	
 	post {

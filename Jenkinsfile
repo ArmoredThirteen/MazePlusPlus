@@ -23,9 +23,8 @@ pipeline {
 		}*/
 		
 		stage('Deploy') {
-			withCredentials([usernamePassword(credentialsId: 'GameSaveJenkinsBuild', passwordVariable: 'pass', usernameVariable: 'user')]) {
-				// the code in here can access $pass and $user
-				steps {
+			steps {
+				withCredentials([usernamePassword(credentialsId: 'GameSaveJenkinsBuild', passwordVariable: 'pass', usernameVariable: 'user')]) {
 					echo "Deploy"
 					
 					def remote = [:]
@@ -37,7 +36,6 @@ pipeline {
 					sshCommand remote: remote, command: "ls"
 				}
 			}
-			
 		}
 	}
 	

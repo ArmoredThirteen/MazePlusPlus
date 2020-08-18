@@ -31,8 +31,8 @@ pipeline {
 						def remote = [:]
 						remote.name = '174.138.54.72'
 						remote.host = '174.138.54.72'
-						remote.user = user
-						remote.password = pass
+						remote.user = 'testing'
+						remote.password = 'testing'
 						remote.allowAnyHosts = true
 						sshCommand remote: remote, command: "ls"
 					}

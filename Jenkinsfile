@@ -10,9 +10,10 @@ pipeline {
 		stage('Build') {
 			steps {
 				echo "Build"
+				sh "ls"
 			}
 		}
-		stage('Test') {
+		/*stage('Test') {
 			steps {
 				echo "Test"
 			}
@@ -21,7 +22,7 @@ pipeline {
 			steps {
 				echo "Deploy"
 			}
-		}
+		}*/
 	}
 	
 	/*post {

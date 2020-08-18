@@ -28,9 +28,12 @@ pipeline {
 					echo "Deploy"
 					
 					// PHP pages
+					sh "scp ./index.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+					sh "scp ./mazeImage.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+					sh "scp ./backtrack.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
 					
-					scpToMazeGen('./main.cpp')
-					//sh "scp ./main.cpp jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+					// C++ code
+					sh "scp ./a.out jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
 				}
 			}
 		}
@@ -46,6 +49,7 @@ pipeline {
 	}
 }
 
-void scpToMazeGen (String filename) {
+//TODO: Why no work?
+/*void scpToMazeGen (String filename) {
 	sh 'scp ${filename} jenkinsbuild@174.138.54.72:/var/www/html/MazeGen'
-}
+}*/

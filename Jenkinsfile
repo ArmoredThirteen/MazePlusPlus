@@ -11,6 +11,8 @@ pipeline {
 			steps {
 				echo "Build"
 				sh "ls"
+				sh "g++ main.cpp Backtrack.cpp"
+				sh "ls"
 			}
 		}
 		

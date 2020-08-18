@@ -27,7 +27,7 @@ pipeline {
 				script {
 					echo "Deploy"
 					
-					sh "ssh jenkinsbuild@174.138.54.72"
+					sh "scp ./main.cpp jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
 					
 					/*withCredentials([usernamePassword(credentialsId: 'GameSaveJenkinsBuild', passwordVariable: 'pass', usernameVariable: 'user')]) {
 						def remote = [:]
@@ -38,7 +38,6 @@ pipeline {
 						remote.allowAnyHosts = true
 						sshCommand remote: remote, command: "ls"
 					}*/
-					
 					
 				}
 			}

@@ -28,11 +28,12 @@ pipeline {
 		}*/
 	}
 	
-	/*post {
+	post {
 		always {
 			echo "Cleanup"
+			cleanWs()
 			//TODO: Ensure started scripts are stopped
 			//TODO: Unmount container or whatever
 		}
-	}*/
+	}
 }

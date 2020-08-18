@@ -27,7 +27,7 @@ pipeline {
 				script {
 					echo "Deploy"
 					
-					//sh "ssh jenkinsbuild@174.138.54.72"
+					sh "ssh jenkinsbuild@174.138.54.72"
 					
 					/*withCredentials([usernamePassword(credentialsId: 'GameSaveJenkinsBuild', passwordVariable: 'pass', usernameVariable: 'user')]) {
 						def remote = [:]

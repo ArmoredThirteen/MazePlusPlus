@@ -28,7 +28,8 @@ pipeline {
 					echo "Deploy"
 					
 					withCredentials([usernamePassword(credentialsId: 'GameSaveJenkinsBuild', passwordVariable: 'pass', usernameVariable: 'user')]) {
-						
+						echo user
+						echo pass
 						/*def remote = [:]
 						remote.name = '174.138.54.72'
 						remote.host = '174.138.54.72'

@@ -7,24 +7,12 @@ pipeline {
 	}
 	
 	stages {
-		stage('Build'){ steps{ stageBuild() }}
-		/*stage('Test') {
-			steps {
-				stageTest()
-			}
-		}
-		stage('Deploy') {
-			steps {
-				stageDeploy()
-			}
-		}*/
+		stage('Build') {steps {stageBuild() }}
+		stage('Test')  {steps {stageTest()  }}
+		stage('Deploy'){steps {stageDeploy()}}
 	}
 	
-	post {
-		always {
-			postAlwaysCleanup()
-		}
-	}
+	post {always {postAlwaysCleanup()}}
 }
 
 

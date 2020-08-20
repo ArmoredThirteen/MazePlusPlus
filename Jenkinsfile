@@ -27,15 +27,16 @@ void stageTest() {
 }
 
 void stageDeploy() {
-	scpToMazeGen('./index.php')
+	string[] filesToMove = [
+		"./index.php",
+		"./mazeImage.php",
+		"./backtrack.php",
+		"./a.out",
+	]
 	
-	// PHP pages
-	/*sh "scp ./index.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
-	sh "scp ./mazeImage.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
-	sh "scp ./backtrack.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
-	
-	// C++ code
-	sh "scp ./a.out jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"*/
+	for (int i = 0; i < filesToMove.length; i++) {
+		scpToMazeGen(filesToMove[i]);
+	}
 }
 
 void postAlwaysCleanup() {

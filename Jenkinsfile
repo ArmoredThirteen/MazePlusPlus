@@ -9,10 +9,11 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
-				echo "Build"
+				echo BRANCH_NAME
+				/*echo "Build"
 				sh "ls"
 				sh "g++ main.cpp Backtrack.cpp"
-				sh "ls"
+				sh "ls"*/
 			}
 		}
 		
@@ -22,7 +23,7 @@ pipeline {
 			}
 		}*/
 		
-		stage('Deploy') {
+		/*stage('Deploy') {
 			steps {
 				script {
 					echo "Deploy"
@@ -36,7 +37,7 @@ pipeline {
 					sh "scp ./a.out jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
 				}
 			}
-		}
+		}*/
 	}
 	
 	post {

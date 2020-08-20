@@ -18,10 +18,10 @@ pipeline {
 					else
 						echo "Is not master"
 						
-					/*echo "Build"
+					echo "Build"
 					sh "ls"
 					sh "g++ main.cpp Backtrack.cpp"
-					sh "ls"*/
+					sh "ls"
 				}
 			}
 		}

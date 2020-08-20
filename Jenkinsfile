@@ -1,7 +1,7 @@
 pipeline {
 	agent any
 	
-	bool isMaster = BRANCH_NAME.equals("master")
+	boolean isMaster = BRANCH_NAME.equals("master")
 	
 	options {
 		buildDiscarder(logRotator(numToKeepStr:'3'))

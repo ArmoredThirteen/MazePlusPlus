@@ -26,8 +26,13 @@ pipeline {
 	
 	post {
 		always {
-			echo "Cleanup"
-			cleanWs()
+			stages {
+				stage('Cleanup') {
+					steps {
+						stageCleanup()
+					}
+				}
+			}
 		}
 	}
 }
@@ -55,6 +60,11 @@ void stageDeploy() {
 	
 	// C++ code
 	sh "scp ./a.out jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+}
+
+void stageCleanup() {
+	echo "Cleanup"
+	cleanWs()
 }
 
 

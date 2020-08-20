@@ -9,7 +9,8 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
-				echo BRANCH_NAME
+				echo BRANCH_NAME.equals ("Jenkins")
+				echo BRANCH_NAME.equals ("Master")
 				/*echo "Build"
 				sh "ls"
 				sh "g++ main.cpp Backtrack.cpp"

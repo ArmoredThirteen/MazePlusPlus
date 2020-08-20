@@ -7,30 +7,13 @@ pipeline {
 	}
 	
 	stages {
-		
-		stage('Test') {
+		stage('Build') {
 			steps {
-				stageScript('blah')
+				stageBuild()
 			}
 		}
 		
-		/*stage('Build') {
-			steps {
-				script {
-					if(isMaster())
-						echo "Is master"
-					else
-						echo "Is not master"
-						
-					echo "Build"
-					sh "ls"
-					sh "g++ main.cpp Backtrack.cpp"
-					sh "ls"
-				}
-			}
-		}
-		
-		stage('Test') {
+		/*stage('Test') {
 			steps {
 				echo "Test"
 			}
@@ -68,8 +51,16 @@ boolean isMaster(){
 }
 
 
-void stageScript(String stageName) {
-	echo "Blah"
+void stageBuild() {
+	if(isMaster())
+		echo "Is master"
+	else
+		echo "Is not master"
+		
+	echo "Build"
+	sh "ls"
+	sh "g++ main.cpp Backtrack.cpp"
+	sh "ls"
 }
 
 

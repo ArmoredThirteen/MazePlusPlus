@@ -7,7 +7,7 @@ pipeline {
 	}
 	
 	stages {
-		stage('Build'){ steps{ stageBuild }}
+		stage('Build'){ steps{ stageBuild() }}
 		/*stage('Test') {
 			steps {
 				stageTest()

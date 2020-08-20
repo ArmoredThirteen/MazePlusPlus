@@ -7,12 +7,10 @@ pipeline {
 	}
 	
 	stages {
-		stage('Build') {
-			steps {
+		stage('Build')
+			steps
 				stageBuild()
-			}
-		}
-		stage('Test') {
+		/*stage('Test') {
 			steps {
 				stageTest()
 			}
@@ -21,7 +19,7 @@ pipeline {
 			steps {
 				stageDeploy()
 			}
-		}
+		}*/
 	}
 	
 	post {

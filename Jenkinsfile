@@ -50,5 +50,5 @@ boolean isMaster(){
 
 
 void scpToMazeGen(String filename) {
-	sh 'scp ${filename} jenkinsbuild@174.138.54.72:/var/www/html/MazeGen'
+	sh "scp ${filename} jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
 }

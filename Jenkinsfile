@@ -27,13 +27,15 @@ void stageTest() {
 }
 
 void stageDeploy() {
+	scpToMazeGen('./index.php')
+	
 	// PHP pages
-	sh "scp ./index.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+	/*sh "scp ./index.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
 	sh "scp ./mazeImage.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
 	sh "scp ./backtrack.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
 	
 	// C++ code
-	sh "scp ./a.out jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+	sh "scp ./a.out jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"*/
 }
 
 void postAlwaysCleanup() {
@@ -47,7 +49,6 @@ boolean isMaster(){
 }
 
 
-//TODO: Why no work?
 void scpToMazeGen(String filename) {
 	sh 'scp ${filename} jenkinsbuild@174.138.54.72:/var/www/html/MazeGen'
 }

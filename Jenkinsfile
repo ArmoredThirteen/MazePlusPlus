@@ -9,15 +9,17 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
-				if (isMaster())
-					echo "Is master"
-				else
-					echo "Is not master"
-					
-				/*echo "Build"
-				sh "ls"
-				sh "g++ main.cpp Backtrack.cpp"
-				sh "ls"*/
+				script {
+					if (isMaster())
+						echo "Is master"
+					else
+						echo "Is not master"
+						
+					/*echo "Build"
+					sh "ls"
+					sh "g++ main.cpp Backtrack.cpp"
+					sh "ls"*/
+				}
 			}
 		}
 		

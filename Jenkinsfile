@@ -1,8 +1,6 @@
 pipeline {
 	agent any
 	
-	boolean isMaster = BRANCH_NAME.equals("master")
-	
 	options {
 		buildDiscarder(logRotator(numToKeepStr:'3'))
 		disableConcurrentBuilds()
@@ -11,7 +9,7 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
-				if (isMaster)
+				if (isMaster())
 					echo "Is master"
 				else
 					echo "Is not master"
@@ -54,6 +52,10 @@ pipeline {
 			//TODO: Unmount container or whatever
 		}
 	}
+}
+
+boolean isMaster (){
+	return BRANCH_NAME.equals ("master")
 }
 
 //TODO: Why no work?

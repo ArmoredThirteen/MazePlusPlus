@@ -26,33 +26,23 @@ pipeline {
 	
 	post {
 		always {
-			stages {
-				stage('Cleanup') {
-					steps {
-						stageCleanup()
-					}
-				}
-			}
+			postAlwaysCleanup()
 		}
 	}
 }
 
 
 void stageBuild() {
-	echo "Build"
-	
 	sh "ls"
 	sh "g++ main.cpp Backtrack.cpp"
 	sh "ls"
 }
 
 void stageTest() {
-	echo "Test"
+	
 }
 
 void stageDeploy() {
-	echo "Deploy"
-	
 	// PHP pages
 	sh "scp ./index.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
 	sh "scp ./mazeImage.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
@@ -62,7 +52,7 @@ void stageDeploy() {
 	sh "scp ./a.out jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
 }
 
-void stageCleanup() {
+void postAlwaysCleanup() {
 	echo "Cleanup"
 	cleanWs()
 }

@@ -34,9 +34,9 @@ void stageDeploy() {
 		"./a.out",
 	]
 	
-	for (int i = 0; i < filesToMove.length; i++) {
+	/*for (int i = 0; i < filesToMove.length; i++) {
 		scpToMazeGen(filesToMove[i]);
-	}
+	}*/
 }
 
 void postAlwaysCleanup() {

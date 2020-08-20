@@ -12,55 +12,54 @@ pipeline {
 				stageBuild()
 			}
 		}
-		
-		/*stage('Test') {
+		stage('Test') {
 			steps {
-				echo "Test"
+				stageTest()
 			}
 		}
-		
 		stage('Deploy') {
 			steps {
-				script {
-					echo "Deploy"
-					
-					// PHP pages
-					sh "scp ./index.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
-					sh "scp ./mazeImage.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
-					sh "scp ./backtrack.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
-					
-					// C++ code
-					sh "scp ./a.out jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
-				}
+				stageDeploy()
 			}
-		}*/
+		}
 	}
 	
 	post {
 		always {
 			echo "Cleanup"
 			cleanWs()
-			//TODO: Ensure started scripts are stopped
-			//TODO: Unmount container or whatever
 		}
 	}
 }
 
-boolean isMaster(){
-	return BRANCH_NAME.equals("master")
-}
-
 
 void stageBuild() {
-	if(isMaster())
-		echo "Is master"
-	else
-		echo "Is not master"
-		
 	echo "Build"
+	
 	sh "ls"
 	sh "g++ main.cpp Backtrack.cpp"
 	sh "ls"
+}
+
+void stageTest() {
+	echo "Test"
+}
+
+void stageDeploy() {
+	echo "Deploy"
+	
+	// PHP pages
+	sh "scp ./index.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+	sh "scp ./mazeImage.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+	sh "scp ./backtrack.php jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+	
+	// C++ code
+	sh "scp ./a.out jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+}
+
+
+boolean isMaster(){
+	return BRANCH_NAME.equals("master")
 }
 
 

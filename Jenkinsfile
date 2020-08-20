@@ -1,6 +1,8 @@
 pipeline {
 	agent any
 	
+	bool isMaster = BRANCH_NAME.equals("master")
+	
 	options {
 		buildDiscarder(logRotator(numToKeepStr:'3'))
 		disableConcurrentBuilds()
@@ -9,9 +11,11 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
-				echo BRANCH_NAME.equals ("Master")
-				echo BRANCH_NAME.equals ("Jenkins")
-				
+				if (isMaster)
+					echo "Is master"
+				else
+					echo "Is not master"
+					
 				/*echo "Build"
 				sh "ls"
 				sh "g++ main.cpp Backtrack.cpp"

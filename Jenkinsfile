@@ -9,7 +9,9 @@ pipeline {
 	stages {
 		
 		stage('Test') {
-			stageScript('blah')
+			steps {
+				stageScript('blah')
+			}
 		}
 		
 		/*stage('Build') {
@@ -67,11 +69,7 @@ boolean isMaster(){
 
 
 void stageScript(String stageName) {
-	steps {
-		script {
-			echo "Blah"
-		}
-	}
+	echo "Blah"
 }
 
 

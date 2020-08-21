@@ -34,8 +34,10 @@ void stageDeploy() {
 		"./a.out",
 	]
 	
+	String subDir = isMaster() ? "" : "/dev"
+	
 	for (int i = 0; i < filesToMove.length; i++) {
-		scpToMazeGen(filesToMove[i]);
+		scpToMazeGen(filesToMove[i], subDir);
 	}
 }
 
@@ -50,6 +52,6 @@ boolean isMaster(){
 }
 
 
-void scpToMazeGen(String filename) {
-	sh "scp ${filename} jenkinsbuild@174.138.54.72:/var/www/html/MazeGen"
+void scpToMazeGen(String filename, String subDir) {
+	sh "scp ${filename} jenkinsbuild@174.138.54.72:/var/www/html/MazeGen${subDir}"
 }

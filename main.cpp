@@ -1,7 +1,9 @@
-#include <iostream>
 #include <stdio.h>  /* printf, NULL */
 #include <stdlib.h> /* srand, rand */
 #include <time.h>   /* time */
+#include <iostream>
+
+#include "MazeMap.h"
 #include "Backtrack.h"
 
 using std::cout;
@@ -48,26 +50,16 @@ int main(int argc, char *argv[])
 	// Make maze
 	//TODO: Maybe set function pointer here then do the actual maze creation after if/else
 	//		Using data from the mentioned sub-array, which only has data for different generator types
-	vector<bool> maze;
+	MazeMap maze(xLen, yLen);
 	if (genMethod == "backtrack")
-		maze = Backtrack::Generate(xLen, yLen/*, subArrayLen, subArray*/);
+		Backtrack::Generate(maze);
 	else {
 		cout << "Could not find given maze generation method: " << argv[1];
 		return -1;
 	}
 
 	// Print with separators
-	for (int y = 0; y < yLen; y++) {
-		for (int x = 0; x < xLen; x++) {
-			for (int z = 0; z < 2; z++) {
-				cout << maze[x + (y * xLen) + (z * xLen * yLen)];
-			}
-			if (x < xLen - 1)
-				cout << "-";
-		}
-		if (y < yLen - 1)
-			cout << "|";
-	}
+	cout << maze;
 
 	return 0;
 }

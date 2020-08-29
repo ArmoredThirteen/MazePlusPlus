@@ -17,6 +17,7 @@ MazeMap::MazeMap(int theXLen, int theYLen) {
 	cells = vector<bool> (xLen * yLen * 2, true);
 }
 
+//TODO: Evaluate if anything has to happen here
 MazeMap::~MazeMap() {}
 
 
@@ -31,12 +32,14 @@ bool MazeMap::IsIndexValid(int x, int y) {
 
 // Breaks the x-axis wall in cell at x,y (sets bit 0 to be false)
 void MazeMap::BreakWallX(int x, int y) {
-	cells[x + (y * xLen) + (0 * xLen * yLen)] = false;
+	//cells[x + (y * xLen) + (0 * xLen * yLen)] = false;
+	cells[x + (y * xLen)] = false;
 }
 
 // Breaks the y-axis wall in cell at x,y (sets bit 1 to be false)
 void MazeMap::BreakWallY(int x, int y) {
-	cells[x + (y * xLen) + (1 * xLen * yLen)] = false;
+	//cells[x + (y * xLen) + (1 * xLen * yLen)] = false;
+	cells[x + (y * xLen) + (xLen * yLen)] = false;
 }
 
 

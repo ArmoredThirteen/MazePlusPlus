@@ -13,9 +13,7 @@ using std::string;
 
 /*
  * Receives [(string)genMethod, (int)seed, (int)xLen, (int)yLen, ...(gen specific args)].
- * Prints out the resulting maze's data (1s/0s for walls/paths plus seperators for cells '-' and yLen '|').
- * Currently only creates backtrack mazes.
- * Designed to add more maze generation types with variety of settings.
+ * Prints out the resulting maze's data (1s/0s for walls/paths plus seperators for cells and rows).
  */
 int main(int argc, char *argv[])
 {
@@ -44,12 +42,7 @@ int main(int argc, char *argv[])
 	// Set random seed
 	srand(seed > 0 ? seed : time(NULL));
 
-	//TODO: Create additionalArgs count and array
-	//		This sub-array should only include the argv values at index 5 and up
-
 	// Make maze
-	//TODO: Maybe set function pointer here then do the actual maze creation after if/else
-	//		Using data from the mentioned sub-array, which only has data for different generator types
 	MazeMap maze(xLen, yLen);
 	if (genMethod == "backtrack")
 		Backtrack::Generate(maze);

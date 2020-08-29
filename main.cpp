@@ -1,7 +1,9 @@
-#include <iostream>
 #include <stdio.h>  /* printf, NULL */
 #include <stdlib.h> /* srand, rand */
 #include <time.h>   /* time */
+#include <iostream>
+
+#include "MazeMap.h"
 #include "Backtrack.h"
 
 using std::cout;
@@ -11,9 +13,7 @@ using std::string;
 
 /*
  * Receives [(string)genMethod, (int)seed, (int)xLen, (int)yLen, ...(gen specific args)].
- * Prints out the resulting maze's data (1s/0s for walls/paths plus seperators for cells '-' and yLen '|').
- * Currently only creates backtrack mazes.
- * Designed to add more maze generation types with variety of settings.
+ * Prints out the resulting maze's data (1s/0s for walls/paths plus seperators for cells and rows).
  */
 int main(int argc, char *argv[])
 {
@@ -42,32 +42,17 @@ int main(int argc, char *argv[])
 	// Set random seed
 	srand(seed > 0 ? seed : time(NULL));
 
-	//TODO: Create additionalArgs count and array
-	//		This sub-array should only include the argv values at index 5 and up
-
 	// Make maze
-	//TODO: Maybe set function pointer here then do the actual maze creation after if/else
-	//		Using data from the mentioned sub-array, which only has data for different generator types
-	vector<bool> maze;
+	MazeMap maze(xLen, yLen);
 	if (genMethod == "backtrack")
-		maze = Backtrack::Generate(xLen, yLen/*, subArrayLen, subArray*/);
+		Backtrack::Generate(maze);
 	else {
 		cout << "Could not find given maze generation method: " << argv[1];
 		return -1;
 	}
 
 	// Print with separators
-	for (int y = 0; y < yLen; y++) {
-		for (int x = 0; x < xLen; x++) {
-			for (int z = 0; z < 2; z++) {
-				cout << maze[x + (y * xLen) + (z * xLen * yLen)];
-			}
-			if (x < xLen - 1)
-				cout << "-";
-		}
-		if (y < yLen - 1)
-			cout << "|";
-	}
+	cout << maze;
 
 	return 0;
 }

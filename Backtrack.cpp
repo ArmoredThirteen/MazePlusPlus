@@ -1,4 +1,5 @@
 #include <stdlib.h> /* srand, rand */
+
 #include "Backtrack.h"
 
 using std::vector;
@@ -12,17 +13,14 @@ using std::vector;
  * Eventually it bubbles up to a cell where there is another adjacent unvisited cell.
  * Keeps doing this until it bubbles all the way back up and recursion ends.
  */
-vector<bool> Backtrack::Generate(int xLen, int yLen/*, int argc, char *argv[]*/) {
-	vector<bool> maze(xLen * yLen * 2, true);
-	vector<bool> visited(xLen * yLen, false);
-	Backtrack::Recurse(maze, visited, xLen, yLen, 0, 0);
-
-	return maze;
+void Backtrack::Generate(MazeMap &maze) {
+	vector<bool> visited(maze.xLen * maze.yLen, false);
+	Backtrack::Recurse(maze, visited, 0, 0);
 }
 
-void Backtrack::Recurse(vector<bool> &maze, vector<bool> &visited, int xLen, int yLen, int x, int y) {
+void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 	// Mark current as visited
-	visited[x + (y * xLen)] = true;
+	visited[x + (y * maze.xLen)] = true;
 
 	// Randomized move directions
 	int moveDirs[4] = { 0,1,2,3 };
@@ -51,50 +49,29 @@ void Backtrack::Recurse(vector<bool> &maze, vector<bool> &visited, int xLen, int
 			nextY = y - 1;
 
 		// Early exit if can't move that direction
-		if (!IsIndexValid(xLen, yLen, nextX, nextY))
+		if (!maze.IsIndexValid(nextX, nextY))
 			continue;
-		if (IsVisited(visited, xLen, nextX, nextY))
+		if (IsVisited(visited, maze.xLen, nextX, nextY))
 			continue;
 
 		// Break appropriate x-axis wall
 		if (nextX < x)
-			BreakWallX(maze, xLen, yLen, x, y);
+			maze.BreakWallX(x, y);
 		else if (nextX > x)
-			BreakWallX(maze, xLen, yLen, nextX, y);
+			maze.BreakWallX(nextX, y);
 
 		// Break appropriate y-axis wall
 		if (nextY < y)
-			BreakWallY(maze, xLen, yLen, x, y);
+			maze.BreakWallY(x, y);
 		else if (nextY > y)
-			BreakWallY(maze, xLen, yLen, x, nextY);
+			maze.BreakWallY(x, nextY);
 		
 		// Dig into the next cell
-		Recurse(maze, visited, xLen, yLen, nextX, nextY);
+		Recurse(maze, visited, nextX, nextY);
 	}
-}
-
-
-// True if given x,y are within the bounds of xLen,yLen
-bool Backtrack::IsIndexValid(int xLen, int yLen, int x, int y) {
-	if (x < 0 || x >= xLen)
-		return false;
-	if (y < 0 || y >= yLen)
-		return false;
-	return true;
 }
 
 // True if cell at x,y has already been visited
 bool Backtrack::IsVisited(vector<bool> &visited, int xLen, int x, int y) {
 	return visited[x + (y * xLen)];
-}
-
-
-// Breaks the x-axis wall in cell at x,y (sets bit 0 to be false)
-void Backtrack::BreakWallX(vector<bool> &maze, int xLen, int yLen, int x, int y) {
-	maze[x + (y * xLen) + (0 * xLen * yLen)] = false;
-}
-
-// Breaks the y-axis wall in cell at x,y (sets bit 1 to be false)
-void Backtrack::BreakWallY(vector<bool> &maze, int xLen, int yLen, int x, int y) {
-	maze[x + (y * xLen) + (1 * xLen * yLen)] = false;
 }

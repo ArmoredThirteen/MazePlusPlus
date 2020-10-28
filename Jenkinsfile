@@ -17,7 +17,7 @@ pipeline {
 
 
 void stageBuild() {
-	sh "ls"
+	//sh "ls"
 	sh "g++ main.cpp MazeMap.cpp Backtrack.cpp"
 	sh "ls"
 }

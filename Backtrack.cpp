@@ -53,9 +53,15 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 // Returns new x based on moveDir
 // Will be the same or +/- 1
 int Backtrack::GetNextX(int moveDir, int x) {
-	if (x > 1)
+	/*if (x > 1)
 		return x;
-	return x + ((x % 2) * 2) - 1;
+	return x + ((x % 2) * 2) - 1;*/
+	if (moveDir == 0)
+		return x + 1;
+	if (moveDir == 1)
+		return x - 1;
+
+	return x;
 }
 
 // Returns new y based on moveDir

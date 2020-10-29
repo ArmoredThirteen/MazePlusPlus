@@ -12,7 +12,10 @@ class Backtrack {
 
 	private:
 		static void Recurse(MazeMap &maze, std::vector<bool> &visited, int x, int y);
-		static bool IsVisited(std::vector<bool> &visited, int xLen, int x, int y);
+		static int GetNextX(int moveDir, int x);
+		static int GetNextY(int moveDir, int y);
+		static bool CanMoveTo(MazeMap &maze, std::vector<bool> &visited, int x, int y)
+		static void BreakNextWall(MazeMap &maze, int x, int y, int nextX, int nextY);
 };
 
 #endif

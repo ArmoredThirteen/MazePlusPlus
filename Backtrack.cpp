@@ -33,45 +33,63 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 
 	// Attempt each moveDir
 	for (int i = 0; i < 4; i++) {
-		int moveDir = moveDirs[i];
-
 		// Determine indexes of next move direction
-		int nextX = x;
-		int nextY = y;
-
-		if (moveDir == 0)
-			nextX = x + 1;
-		else if (moveDir == 1)
-			nextX = x - 1;
-		else if (moveDir == 2)
-			nextY = y + 1;
-		else if (moveDir == 3)
-			nextY = y - 1;
+		int nextX = GetNextX(moveDirs[i], x);
+		int nextY = GetNextY(moveDirs[i], y);
 
 		// Early exit if can't move that direction
-		if (!maze.IsIndexValid(nextX, nextY))
-			continue;
-		if (IsVisited(visited, maze.xLen, nextX, nextY))
+		if (!CanMoveTo(maze, visited, nextX, nextY))
 			continue;
 
-		// Break appropriate x-axis wall
-		if (nextX < x)
-			maze.BreakWallX(x, y);
-		else if (nextX > x)
-			maze.BreakWallX(nextX, y);
+		// Break wall between this cell and the next
+		BreakNextWall(maze, x, y, nextX, nextY);
 
-		// Break appropriate y-axis wall
-		if (nextY < y)
-			maze.BreakWallY(x, y);
-		else if (nextY > y)
-			maze.BreakWallY(x, nextY);
-		
-		// Dig into the next cell
+		// Move to the next cell
 		Recurse(maze, visited, nextX, nextY);
 	}
 }
 
-// True if cell at x,y has already been visited
-bool Backtrack::IsVisited(vector<bool> &visited, int xLen, int x, int y) {
-	return visited[x + (y * xLen)];
+
+// Returns new x based on moveDir
+// Will be the same or +/- 1
+bool Backtrack::GetNextX(int moveDir, int x) {
+	if (moveDir == 0)
+		return x + 1;
+	if (moveDir == 1)
+		return x - 1;
+
+	return x;
+}
+
+// Returns new y based on moveDir
+// Will be the same or +/- 1
+bool Backtrack::GetNextY(int moveDir, int y) {
+	if (moveDir == 2)
+		return y + 1;
+	if (moveDir == 3)
+		return y - 1;
+
+	return y;
+}
+
+
+// True if cell at (x,y) has a valid index and has not been visited
+bool Backtrack::CanMoveTo(MazeMap &maze, vector<bool> &visited, int x, int y) {
+	return maze.IsIndexValid(x, y) && !visited[x + (y * xLen)];
+}
+
+
+// Calls maze.BreakWallX/Y to break the wall between the current and next cells
+// Depending on direction the changed cell is either at (x,y) or (nextX,nextY)
+void Backtrack::BreakNextWall(MazeMap &maze, int x, int y, int nextX, int nextY) {
+	// Break appropriate x-axis wall
+	if (nextX < x)
+		maze.BreakWallX(x, y);
+	else if (nextX > x)
+		maze.BreakWallX(nextX, y);
+	// Break appropriate y-axis wall
+	else if (nextY < y)
+		maze.BreakWallY(x, y);
+	else if (nextY > y)
+		maze.BreakWallY(x, nextY);
 }

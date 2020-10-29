@@ -53,5 +53,5 @@ boolean isMaster(){
 
 
 void scpToMazeGen(String filename, String subDir) {
-	sh "scp -i ~/.ssh/GameSaveDeployServer ${filename} jenkinsbuild@174.138.54.72:/var/www/html/MazeGen${subDir}"
+	sh "scp -i \~/.ssh/GameSaveDeployServer ${filename} jenkinsbuild@174.138.54.72:/var/www/html/MazeGen${subDir}"
 }

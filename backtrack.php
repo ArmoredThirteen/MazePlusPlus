@@ -15,7 +15,10 @@
 	}
 	else {
 		// Pass maze data to image generation page and display returned image
-		echo "<img src='mazeImage.php?rows=$rows&cols=$cols&maze=$out[0]' alt='Generated Maze' />";
+		//echo "<img src='mazeImage.php?rows=$rows&cols=$cols&maze=$out[0]' alt='Generated Maze' />";
+		foreach ($out as $val) {
+			echo "$val";
+		}
 	}
 ?>
 

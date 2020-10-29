@@ -34,8 +34,8 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 	// Attempt each moveDir
 	for (int i = 0; i < 4; i++) {
 		// Determine indexes of next move direction
-		int nextX = GetNextX(moveDirs[i], x);
-		int nextY = GetNextY(moveDirs[i], y);
+		int nextX = moveDirs[i] > 1 ? x : x + GetNextX(moveDirs[i]);
+		int nextY = moveDirs[i] < 2 ? y : y + GetNextY(moveDirs[i]);
 
 		// Early exit if can't move that direction
 		if (!CanMoveTo(maze, visited, nextX, nextY))
@@ -50,31 +50,8 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 }
 
 
-// Returns new x based on moveDir
-// Will be the same or +/- 1
-int Backtrack::GetNextX(int moveDir, int x) {
-	std::cout << "moveDir: " << moveDir << "x: " << x << " next x: " << x + ((x % 2) * 2) - 1 << std::endl;
-
-	/*if (x > 1)
-		return x;
-	return x + ((x % 2) * 2) - 1;*/
-	if (moveDir == 0)
-		return x + 1;
-	if (moveDir == 1)
-		return x - 1;
-
-	return x;
-}
-
-// Returns new y based on moveDir
-// Will be the same or +/- 1
-int Backtrack::GetNextY(int moveDir, int y) {
-	if (moveDir == 2)
-		return y + 1;
-	if (moveDir == 3)
-		return y - 1;
-
-	return y;
+int Backtrack::MoveDirToIncrement(int moveDir) {
+	return ((moveDir % 2) * 2) - 1;
 }
 
 

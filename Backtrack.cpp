@@ -53,7 +53,7 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 // Returns new x based on moveDir
 // Will be the same or +/- 1
 int Backtrack::GetNextX(int moveDir, int x) {
-	std::cout << "moveDir: " << moveDir << "x: " << x << " next x: " << x + ((x % 2) * 2) - 1;
+	std::cout << "moveDir: " << moveDir << "x: " << x << " next x: " << x + ((x % 2) * 2) - 1 << std::endl;
 
 	/*if (x > 1)
 		return x;

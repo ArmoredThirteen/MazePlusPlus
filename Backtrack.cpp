@@ -34,8 +34,8 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 	// Attempt each moveDir
 	for (int i = 0; i < 4; i++) {
 		// Determine indexes of next move direction
-		int nextX = moveDirs[i] > 1 ? x : x + GetNextX(moveDirs[i]);
-		int nextY = moveDirs[i] < 2 ? y : y + GetNextY(moveDirs[i]);
+		int nextX = moveDirs[i] > 1 ? x : x + MoveDirToIncrement(moveDirs[i]);
+		int nextY = moveDirs[i] < 2 ? y : y + MoveDirToIncrement(moveDirs[i]);
 
 		// Early exit if can't move that direction
 		if (!CanMoveTo(maze, visited, nextX, nextY))

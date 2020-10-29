@@ -17,7 +17,7 @@ pipeline {
 
 
 void stageBuild() {
-	//sh "ls"
+	sh "ls"
 	sh "g++ main.cpp MazeMap.cpp Backtrack.cpp"
 	sh "ls"
 }
@@ -53,5 +53,6 @@ boolean isMaster(){
 
 
 void scpToMazeGen(String filename, String subDir) {
-	sh "scp ${filename} jenkinsbuild@174.138.54.72:/var/www/html/MazeGen${subDir}"
+	sh "ls ~/.ssh"
+	//sh "scp -i ~/.ssh/GameSaveDeployServer ${filename} jenkinsbuild@174.138.54.72:/var/www/html/MazeGen${subDir}"
 }

@@ -75,7 +75,7 @@ bool Backtrack::GetNextY(int moveDir, int y) {
 
 // True if cell at (x,y) has a valid index and has not been visited
 bool Backtrack::CanMoveTo(MazeMap &maze, vector<bool> &visited, int x, int y) {
-	return maze.IsIndexValid(x, y) && !visited[x + (y * xLen)];
+	return maze.IsIndexValid(x, y) && !visited[x + (y * maze.xLen)];
 }
 
 

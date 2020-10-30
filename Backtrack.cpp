@@ -42,7 +42,7 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 			continue;
 
 		// Break wall between this cell and the next
-		BreakNextWall(maze, x, y, nextX, nextY);
+		maze.BreakWallBetween(x, y, nextX, nextY);
 
 		// Move to the next cell
 		Recurse(maze, visited, nextX, nextY);
@@ -58,20 +58,4 @@ int Backtrack::MoveDirToIncrement(int moveDir) {
 // True if cell at (x,y) has a valid index and has not been visited
 bool Backtrack::CanMoveTo(MazeMap &maze, vector<bool> &visited, int x, int y) {
 	return maze.IsIndexValid(x, y) && !visited[x + (y * maze.xLen)];
-}
-
-
-// Calls maze.BreakWallX/Y to break the wall between the current and next cells
-// Depending on direction the changed cell is either at (x,y) or (nextX,nextY)
-void Backtrack::BreakNextWall(MazeMap &maze, int x, int y, int nextX, int nextY) {
-	// Break appropriate x-axis wall
-	if (nextX < x)
-		maze.BreakWallX(x, y);
-	else if (nextX > x)
-		maze.BreakWallX(nextX, y);
-	// Break appropriate y-axis wall
-	else if (nextY < y)
-		maze.BreakWallY(x, y);
-	else if (nextY > y)
-		maze.BreakWallY(x, nextY);
 }

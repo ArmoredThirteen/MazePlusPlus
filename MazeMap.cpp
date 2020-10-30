@@ -30,6 +30,7 @@ bool MazeMap::IsIndexValid(int x, int y) {
 	return true;
 }
 
+
 // Breaks the x-axis wall in cell at x,y (sets bit 0 to be false)
 void MazeMap::BreakWallX(int x, int y) {
 	//cells[x + (y * xLen) + (0 * xLen * yLen)] = false;
@@ -40,6 +41,21 @@ void MazeMap::BreakWallX(int x, int y) {
 void MazeMap::BreakWallY(int x, int y) {
 	//cells[x + (y * xLen) + (1 * xLen * yLen)] = false;
 	cells[x + (y * xLen) + (xLen * yLen)] = false;
+}
+
+// Calls BreakWallX/Y to break the wall between the current and next cells
+// Depending on direction the changed cell is either at location one or two
+void MazeMap::BreakWallBetween(int xOne, int yOne, int xTwo, int yTwo) {
+	// Break appropriate x-axis wall
+	if (xTwo < xOne)
+		BreakWallX(xOne, yOne);
+	else if (xTwo > xOne)
+		BreakWallX(xTwo, yOne);
+	// Break appropriate y-axis wall
+	else if (yTwo < yOne)
+		BreakWallY(xOne, yOne);
+	else if (yTwo > yOne)
+		BreakWallY(xOne, yTwo);
 }
 
 

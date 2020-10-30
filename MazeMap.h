@@ -15,8 +15,10 @@ class MazeMap {
 		~MazeMap();
 
 		bool IsIndexValid(int x, int y);
+
 		void BreakWallX(int x, int y);
 		void BreakWallY(int x, int y);
+		void BreakWallBetween(int xOne, int yOne, int xTwo, int yTwo);
 
 		friend std::ostream& operator<< (std::ostream&, MazeMap&);
 };

@@ -23,13 +23,8 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 	visited[x + (y * maze.xLen)] = true;
 
 	// Randomized move directions
-	int moveDirs[4] = { 0,1,2,3 };
-	for (int i = 0; i < 4; i++) {
-		int swapInd = rand() % 4;
-		int temp = moveDirs[swapInd];
-		moveDirs[swapInd] = moveDirs[i];
-		moveDirs[i] = temp;
-	}
+	int moveDirs[4] = {};
+	FillMoveDirs(moveDirs);
 
 	// Attempt each moveDir
 	for (int i = 0; i < 4; i++) {
@@ -50,10 +45,20 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 }
 
 
+void Backtrack::FillMoveDirs(int moveDirs[]) {
+	moveDirs = { 0,1,2,3 };
+
+	for (int i = 0; i < 4; i++) {
+		int swapInd = rand() % 4;
+		int temp = moveDirs[swapInd];
+		moveDirs[swapInd] = moveDirs[i];
+		moveDirs[i] = temp;
+	}
+}
+
 int Backtrack::MoveDirToIncrement(int moveDir) {
 	return ((moveDir % 2) * 2) - 1;
 }
-
 
 // True if cell at (x,y) has a valid index and has not been visited
 bool Backtrack::CanMoveTo(MazeMap &maze, vector<bool> &visited, int x, int y) {

@@ -18,8 +18,8 @@ pipeline {
 
 void stageBuild() {
 	sh "ls"
-	sh "g++ -o MazeGenerator.out main.cpp MazeMap.cpp Backtrack.cpp"
-	//sh "g++ -o GenTests.out maintests.cpp MazeMap.cpp Backtrack.cpp"
+	sh "g++ -o MazeGen.out main.cpp MazeMap.cpp Backtrack.cpp"
+	sh "g++ -o MazeGenTests.out maintests.cpp catch_amalgamated.cpp MazeMap.cpp Backtrack.cpp"
 	sh "ls"
 }
 
@@ -32,7 +32,7 @@ void stageDeploy() {
 		"./index.php",
 		"./mazeImage.php",
 		"./backtrack.php",
-		"./MazeGenerator.out",
+		"./MazeGen.out",
 	]
 
 	String subDir = isMaster() ? "" : "/dev"

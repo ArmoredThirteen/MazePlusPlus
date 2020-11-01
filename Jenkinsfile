@@ -1,29 +1,30 @@
 pipeline {
 	agent any
-	
+
 	options {
 		buildDiscarder(logRotator(numToKeepStr:'3'))
 		disableConcurrentBuilds()
 	}
-	
+
 	stages {
 		stage('Build') {steps {stageBuild() }}
 		stage('Test')  {steps {stageTest()  }}
 		stage('Deploy'){steps {stageDeploy()}}
 	}
-	
+
 	post {always {postAlwaysCleanup()}}
 }
 
 
 void stageBuild() {
 	sh "ls"
-	sh "g++ main.cpp MazeMap.cpp Backtrack.cpp"
+	sh "g++ -o MazeGenerator main.cpp MazeMap.cpp Backtrack.cpp"
+	sh "g++ -o GenTests maintests.cpp MazeMap.cpp Backtrack.cpp"
 	sh "ls"
 }
 
 void stageTest() {
-	
+
 }
 
 void stageDeploy() {
@@ -31,11 +32,11 @@ void stageDeploy() {
 		"./index.php",
 		"./mazeImage.php",
 		"./backtrack.php",
-		"./a.out",
+		"./MazeGenerator.out",
 	]
-	
+
 	String subDir = isMaster() ? "" : "/dev"
-	
+
 	for (int i = 0; i < filesToMove.length; i++) {
 		scpToMazeGen(filesToMove[i], subDir);
 	}

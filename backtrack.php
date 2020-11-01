@@ -8,7 +8,7 @@
 	$escapeSeed = escapeshellarg($seed);
 
 	// seed, xLen, yLen
-	exec("./a.out backtrack $escapeSeed $escapeCols $escapeRows", $out, $return);
+	exec("./MazeGenerator.out backtrack $escapeSeed $escapeCols $escapeRows", $out, $return);
 
 	if ($return) {
 		echo "Generation failed :'(";

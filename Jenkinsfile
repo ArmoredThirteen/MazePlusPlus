@@ -24,7 +24,7 @@ void stageBuild() {
 }
 
 void stageTest() {
-
+	sh "./MazeGenTests.out"
 }
 
 void stageDeploy() {

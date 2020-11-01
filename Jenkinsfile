@@ -19,7 +19,7 @@ pipeline {
 void stageBuild() {
 	sh "ls"
 	sh "g++ -o MazeGenerator main.cpp MazeMap.cpp Backtrack.cpp"
-	sh "g++ -o GenTests maintests.cpp MazeMap.cpp Backtrack.cpp"
+	//sh "g++ -o GenTests maintests.cpp MazeMap.cpp Backtrack.cpp"
 	sh "ls"
 }
 

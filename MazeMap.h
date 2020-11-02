@@ -16,6 +16,9 @@ class MazeMap {
 
 		bool IsIndexValid(int x, int y);
 
+		bool GetAt(int x, int y, int wallIndex);
+		void SetAt(int x, int y, int wallIndex, bool isWall);
+
 		void BreakWallX(int x, int y);
 		void BreakWallY(int x, int y);
 		void BreakWallBetween(int xOne, int yOne, int xTwo, int yTwo);

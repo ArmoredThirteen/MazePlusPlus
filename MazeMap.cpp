@@ -33,13 +33,13 @@ bool MazeMap::IsIndexValid(int x, int y) {
 
 bool MazeMap::GetAt(int x, int y, int wallIndex) {
 	if (!IsIndexValid(x, y))
-		throw std::out_of_range ();
+		throw std::out_of_range ("GetAt() given invalid x,y index(es)");
 	return cells[x + (y * xLen) + (wallIndex * xLen * yLen)];
 }
 
 void MazeMap::SetAt(int x, int y, int wallIndex, bool isWall) {
 	if (!IsIndexValid(x, y))
-		throw std::out_of_range ();
+		throw std::out_of_range ("SetAt() given invalid x,y index(es)");
 	cells[x + (y * xLen) + (wallIndex * xLen * yLen)] = isWall;
 }
 

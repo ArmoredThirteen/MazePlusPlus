@@ -14,19 +14,19 @@ TEST_CASE("Initialized dimensions", "[MazeMap]") {
   MazeMap maze(xLen, yLen);
 
   SECTION("Total number of cells") {
-    int cellArraySize = sizeof(maze.cells)/sizeof(maze.cells[0]);
+    int cellArraySize = sizeof(maze.cells) / sizeof(maze.*cells);
     REQUIRE (cellArraySize == xLen * yLen * 2);
   }
 
   SECTION("Check dimensions using IsIndexValid()") {
     REQUIRE (maze.IsIndexValid  (0, 0));
-    REQUIRE (maze.IsIndexValid  (5, 2));
+    REQUIRE (maze.IsIndexValid  (4, 1));
     REQUIRE (!maze.IsIndexValid (-1, 0));
     REQUIRE (!maze.IsIndexValid (0, -1));
     REQUIRE (!maze.IsIndexValid (-1, -1));
-    REQUIRE (!maze.IsIndexValid (6, 2));
-    REQUIRE (!maze.IsIndexValid (5, 3));
-    REQUIRE (!maze.IsIndexValid (6, 3));
+    REQUIRE (!maze.IsIndexValid (5, 1));
+    REQUIRE (!maze.IsIndexValid (4, 2));
+    REQUIRE (!maze.IsIndexValid (5, 2));
   }
 }
 

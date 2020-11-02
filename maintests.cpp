@@ -32,6 +32,11 @@ TEST_CASE("Initialized dimensions", "[MazeMap]") {
 
 
 TEST_CASE ("Throw exceptions", "[MazeMap]") {
+  int xLen = 5;
+  int yLen = 2;
+
+  MazeMap maze(xLen, yLen);
+
   SECTION("GetAt() and SetAt() throw out of range") {
     // GetAt(), negative index
     bool caught = false;

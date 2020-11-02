@@ -14,8 +14,7 @@ TEST_CASE("Initialized dimensions", "[MazeMap]") {
   MazeMap maze(xLen, yLen);
 
   SECTION("Total number of cells") {
-    int cellArraySize = sizeof(maze.cells) / sizeof(maze.*cells);
-    REQUIRE (cellArraySize == xLen * yLen * 2);
+    REQUIRE (maze.cells.size() == xLen * yLen * 2);
   }
 
   SECTION("Check dimensions using IsIndexValid()") {

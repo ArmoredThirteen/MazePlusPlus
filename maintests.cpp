@@ -8,8 +8,10 @@
 
 
 TEST_CASE("Initialized dimensions", "[MazeMap]") {
-  // 5 wide, 2 tall
-  MazeMap maze(5, 2);
+  int xLen = 5;
+  int yLen = 2;
+
+  MazeMap maze(xLen, yLen);
 
   SECTION("Total number of cells") {
     int cellArraySize = sizeof(maze.cells)/sizeof(maze.cells[0]);

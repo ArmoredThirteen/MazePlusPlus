@@ -65,7 +65,7 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
 
     for (int x = 1; x < xLen; x++)
       for (int y = 0; y < yLen; y++) {
-        BreakWallBetween(x - 1, y, x, y);
+        maze.BreakWallBetween(x - 1, y, x, y);
       }
 
     for (int x = 0; x < xLen; x++)

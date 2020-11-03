@@ -67,11 +67,52 @@ TEST_CASE ("Throw exceptions", "[MazeMap]") {
     }
     REQUIRE (caught);
 
-
     // SetAt(), high index
     caught = false;
     try {
       maze.SetAt(10, 10, 0, true);
+    }
+    catch(const std::out_of_range& ex) {
+      caught = true;
+    }
+    REQUIRE (caught);
+  }
+
+  SECTION("BreakWallX() and BreakWallY() throw out of range") {
+    // BreakWallX(), negative index
+    bool caught = false;
+    try {
+      maze.BreakWallX(-10, -10);
+    }
+    catch(const std::out_of_range& ex) {
+      caught = true;
+    }
+    REQUIRE (caught);
+
+    // BreakWallX(), high index
+    caught = false;
+    try {
+      maze.BreakWallX(10, 10);
+    }
+    catch(const std::out_of_range& ex) {
+      caught = true;
+    }
+    REQUIRE (caught);
+
+    // BreakWallY(), negative index
+    caught = false;
+    try {
+      maze.BreakWallY(-10, -10);
+    }
+    catch(const std::out_of_range& ex) {
+      caught = true;
+    }
+    REQUIRE (caught);
+
+    // BreakWallY(), high index
+    caught = false;
+    try {
+      maze.BreakWallY(10, 10);
     }
     catch(const std::out_of_range& ex) {
       caught = true;

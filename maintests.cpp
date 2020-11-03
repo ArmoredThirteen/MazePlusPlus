@@ -43,7 +43,7 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
         if (x == 0)
           maze.SetAt(x, y, 0, false);
         if (y == 0)
-          maze.SetAt(x, y, 1, false)
+          maze.SetAt(x, y, 1, false);
       }
 
     // Check all cells for correct broken paths

@@ -20,9 +20,9 @@ void Backtrack::Generate(MazeMap &maze) {
 	for (int x = 0; x < maze.xLen; x++)
 		for (int y = 0; y < maze.yLen; y++) {
 			if (x == 0)
-				maze.SetAt(x, y, 0, false);
-			if (y == 0)
 				maze.SetAt(x, y, 1, false);
+			if (y == 0)
+				maze.SetAt(x, y, 0, false);
 		}
 }
 

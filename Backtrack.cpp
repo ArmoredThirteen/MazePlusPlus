@@ -17,13 +17,17 @@ void Backtrack::Generate(MazeMap &maze) {
 	//vector<bool> visited(maze.xLen * maze.yLen, false);
 	//Backtrack::Recurse(maze, visited, 0, 0);
 
-	for (int x = 0; x < maze.xLen; x++)
+	/*for (int x = 0; x < maze.xLen; x++)
 		for (int y = 0; y < maze.yLen; y++) {
 			if (x == 0)
 				maze.SetAt(x, y, 1, false);
 			if (y == 0)
 				maze.SetAt(x, y, 0, false);
-		}
+		}*/
+		for (int x = 1; x < maze.xLen; x++)
+			for (int y = 0; y < maze.yLen; y++) {
+				maze.BreakWallBetween(x - 1, y, x, y);
+			}
 }
 
 void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {

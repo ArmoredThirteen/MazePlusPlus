@@ -19,12 +19,12 @@ pipeline {
 void stageBuild() {
 	sh "ls"
 	sh "g++ -o MazeGen.out main.cpp MazeMap.cpp Backtrack.cpp"
-	sh "g++ -o MazeGenTests.out -save-temps -ftrack-macro-expansion=0 maintests.cpp catch_amalgamated.cpp MazeMap.cpp Backtrack.cpp"
+	//sh "g++ -o MazeGenTests.out -save-temps -ftrack-macro-expansion=0 maintests.cpp catch_amalgamated.cpp MazeMap.cpp Backtrack.cpp"
 	sh "ls"
 }
 
 void stageTest() {
-	sh "./MazeGenTests.out"
+	//sh "./MazeGenTests.out"
 }
 
 void stageDeploy() {

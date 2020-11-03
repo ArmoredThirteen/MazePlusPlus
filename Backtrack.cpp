@@ -14,8 +14,8 @@ using std::vector;
  * Keeps doing this until it bubbles all the way back up and recursion ends.
  */
 void Backtrack::Generate(MazeMap &maze) {
-	vector<bool> visited(maze.xLen * maze.yLen, false);
-	Backtrack::Recurse(maze, visited, 0, 0);
+	//vector<bool> visited(maze.xLen * maze.yLen, false);
+	//Backtrack::Recurse(maze, visited, 0, 0);
 }
 
 void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {

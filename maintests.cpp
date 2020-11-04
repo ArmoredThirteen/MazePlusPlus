@@ -29,7 +29,6 @@ TEST_CASE("Initialized dimensions", "[MazeMap]") {
   }
 }
 
-
 TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
   int xLen = 3;
   int yLen = 3;
@@ -106,7 +105,6 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
         }
   }
 }
-
 
 TEST_CASE("Throw exceptions", "[MazeMap]") {
   int xLen = 5;
@@ -196,5 +194,36 @@ TEST_CASE("Throw exceptions", "[MazeMap]") {
       caught = true;
     }
     REQUIRE(caught);
+  }
+}
+
+
+TEST_CASE("Helper methods", "[Backtrack]") {
+  SECTION("Check OrderMoveDirs() ratio") {
+    int orderCount = 120;
+    float allowedVariance = 0.1;
+
+    int moveDirs[4] = { 0,1,2,3 };
+    int dirCounts[4][4];
+
+    // Count the number of times each number shows in each position
+    for (int count = 0; count < orderCount; count++) {
+      Backtrack::OrderMoveDirs(moveDirs);
+      // First index is the moveDir value, second index is where it was found
+      for (int i = 0; i < 4; i++)
+        dirCounts[moveDirs[i]][i]++;
+    }
+
+    // Backtrack is full random and should have equal spread
+    float averageRatioVariance = 0;
+    int expectedCounts = orderCount / 4;
+    for (int i = 0; i < 4; i++)
+      for (int k = 0; k < 4; k++) {
+        float ratio = (float)dirCounts[i][k]/(float)(expectedCounts);
+        averageRatioVariance = std::abs(1 - ratio);
+      }
+
+    averageRatioVariance /= 16.0;
+    REQUIRE(averageRatioiVariance <= allowedVariance);
   }
 }

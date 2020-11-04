@@ -44,7 +44,7 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
       }
   }
 
-  /*SECTION("Path along lower corner") {
+  SECTION("Path along lower corner") {
     MazeMap maze(xLen, yLen);
 
     // Build maze with walls broken in path along 0 x/y axis
@@ -63,12 +63,16 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
           REQUIRE(maze.GetAt(x, y, 0));
           REQUIRE(maze.GetAt(x, y, 1));
         }
+        if (x == 0 && y == 0) {
+          REQUIRE(maze.GetAt(x, y, 0));
+          REQUIRE(maze.GetAt(x, y, 1));
+        }
         if (x == 0)
           REQUIRE(!maze.GetAt(x, y, 0));
         if (y == 0)
           REQUIRE(!maze.GetAt(x, y, 1));
       }
-  }*/
+  }
 
   SECTION("BreakWallBetween() along x axis") {
     MazeMap maze(xLen, yLen);

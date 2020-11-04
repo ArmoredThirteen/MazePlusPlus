@@ -50,9 +50,9 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
     // Build maze with walls broken in path along 0 x/y axis
     for (int x = 0; x < xLen; x++)
       for (int y = 0; y < yLen; y++) {
-        if (x == 0 && y > 0)
+        if (x == 0)
           maze.SetAt(x, y, 1, false);
-        if (y == 0 && x > 0)
+        if (y == 0)
           maze.SetAt(x, y, 0, false);
       }
 
@@ -63,13 +63,9 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
           REQUIRE(maze.GetAt(x, y, 0));
           REQUIRE(maze.GetAt(x, y, 1));
         }
-        if (x == 0 && y == 0) {
-          REQUIRE(maze.GetAt(x, y, 0));
-          REQUIRE(maze.GetAt(x, y, 1));
-        }
-        if (x == 0 && y > 0)
+        if (x == 0)
           REQUIRE(!maze.GetAt(x, y, 1));
-        if (y == 0 && x > 0)
+        if (y == 0)
           REQUIRE(!maze.GetAt(x, y, 0));
       }
   }

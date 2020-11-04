@@ -204,7 +204,7 @@ TEST_CASE("Helper methods", "[Backtrack]") {
     float allowedVariance = 0.1;
 
     int moveDirs[4] = { 0,1,2,3 };
-    int dirCounts[4][4];
+    unsigned int dirCounts[4][4];
 
     // Count the number of times each number shows in each position
     for (int count = 0; count < orderCount; count++) {

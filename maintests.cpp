@@ -98,11 +98,11 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
 
       for (int x = 0; x < xLen; x++)
         for (int y = 0; y < yLen; y++) {
-          REQUIRE(maze.GetAt(x, y, 1));
-          if (x == 0)
-            REQUIRE(!maze.GetAt(x, y, 0));
+          REQUIRE(maze.GetAt(x, y, 0));
+          if (y == 0)
+            REQUIRE(maze.GetAt(x, y, 1));
           else
-            REQUIRE(maze.GetAt(x, y, 0));
+            REQUIRE(!maze.GetAt(x, y, 1));
         }
   }
 }

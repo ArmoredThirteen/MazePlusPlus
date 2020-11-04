@@ -219,6 +219,7 @@ TEST_CASE("Helper methods", "[Backtrack]") {
     int expectedCounts = orderCount / 4;
     for (int i = 0; i < 4; i++)
       for (int k = 0; k < 4; k++) {
+        std::cout << dirCounts[i][k] << " ";
         float ratio = (float)dirCounts[i][k]/(float)(expectedCounts);
         averageRatioVariance = std::abs(1 - ratio);
       }

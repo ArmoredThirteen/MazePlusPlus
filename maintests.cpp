@@ -68,9 +68,9 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
           REQUIRE(maze.GetAt(x, y, 1));
         }
         if (x == 0 && y > 0)
-          REQUIRE(!maze.GetAt(x, y, 0));
-        if (y == 0 && x > 0)
           REQUIRE(!maze.GetAt(x, y, 1));
+        if (y == 0 && x > 0)
+          REQUIRE(!maze.GetAt(x, y, 0));
       }
   }
 

@@ -38,22 +38,28 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
     MazeMap maze(xLen, yLen);
 
     for (int x = 0; x < xLen; x++)
+<<<<<<< HEAD
       for (int y = 0; y < yLen; y++) {
         REQUIRE(!maze.GetAt(x, y, 0));
         REQUIRE(!maze.GetAt(x, y, 1));
+=======
+      for (int y =0; y < yLen; y++) {
+        REQUIRE(maze.GetAt(x, y, 0));
+        REQUIRE(maze.GetAt(x, y, 1));
+>>>>>>> troubleshootInitializeTests
       }
   }
 
-  /*SECTION("Path along lower corner") {
+  SECTION("Path along lower corner") {
     MazeMap maze(xLen, yLen);
 
     // Build maze with walls broken in path along 0 x/y axis
     for (int x = 0; x < xLen; x++)
       for (int y = 0; y < yLen; y++) {
         if (x == 0)
-          maze.SetAt(x, y, 0, false);
-        if (y == 0)
           maze.SetAt(x, y, 1, false);
+        if (y == 0)
+          maze.SetAt(x, y, 0, false);
       }
 
     // Check all cells for correct broken paths
@@ -64,11 +70,11 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
           REQUIRE(maze.GetAt(x, y, 1));
         }
         if (x == 0)
-          REQUIRE(!maze.GetAt(x, y, 0));
-        if (y == 0)
           REQUIRE(!maze.GetAt(x, y, 1));
+        if (y == 0)
+          REQUIRE(!maze.GetAt(x, y, 0));
       }
-  }*/
+  }
 
   SECTION("BreakWallBetween() along x axis") {
     MazeMap maze(xLen, yLen);
@@ -80,8 +86,11 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
 
     for (int x = 0; x < xLen; x++)
       for (int y = 0; y < yLen; y++) {
-        REQUIRE(maze.GetAt(x, y, 0));
-        REQUIRE(!maze.GetAt(x, y, 1));
+        REQUIRE(maze.GetAt(x, y, 1));
+        if (x == 0)
+          REQUIRE(maze.GetAt(x, y, 0));
+        else
+          REQUIRE(!maze.GetAt(x, y, 0));
       }
   }
 }

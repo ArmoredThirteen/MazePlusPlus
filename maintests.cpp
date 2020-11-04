@@ -211,7 +211,7 @@ TEST_CASE("Helper methods", "[Backtrack]") {
       Backtrack::OrderMoveDirs(moveDirs);
       // First index is the moveDir value, second index is where it was found
       for (int i = 0; i < 4; i++)
-        dirCounts[moveDirs[i]][i]++;
+        dirCounts[moveDirs[i]][i] = 1;
     }
 
     // Backtrack is full random and should have equal spread

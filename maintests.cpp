@@ -87,6 +87,24 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
           REQUIRE(!maze.GetAt(x, y, 0));
       }
   }
+
+  SECTION("BreakWallBetween() along y axis") {
+    MazeMap maze(xLen, yLen);
+
+    for (int x = 0; x < xLen; x++)
+      for (int y = 1; y < yLen; y++) {
+        maze.BreakWallBetween(x, y - 1, x, y);
+      }
+
+      for (int x = 0; x < xLen; x++)
+        for (int y = 0; y < yLen; y++) {
+          REQUIRE(maze.GetAt(x, y, 1));
+          if (x == 0)
+            REQUIRE(!maze.GetAt(x, y, 0));
+          else
+            REQUIRE(maze.GetAt(x, y, 0));
+        }
+  }
 }
 
 

@@ -44,16 +44,16 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
       }
   }
 
-  /*SECTION("Path along lower corner") {
+  SECTION("Path along lower corner") {
     MazeMap maze(xLen, yLen);
 
     // Build maze with walls broken in path along 0 x/y axis
-    for (int x = 0; x < xLen; x++)
+    /*for (int x = 0; x < xLen; x++)
       for (int y = 0; y < yLen; y++) {
         if (x == 0)
-          maze.SetAt(x, y, 0, false);
-        if (y == 0)
           maze.SetAt(x, y, 1, false);
+        if (y == 0)
+          maze.SetAt(x, y, 2, false);
       }
 
     // Check all cells for correct broken paths
@@ -80,8 +80,11 @@ TEST_CASE("Manual SetAt(), check with GetAt()", "[MazeMap]") {
 
     for (int x = 0; x < xLen; x++)
       for (int y = 0; y < yLen; y++) {
-        REQUIRE(!maze.GetAt(x, y, 0));
         REQUIRE(maze.GetAt(x, y, 1));
+        if (x == 0)
+          REQUIRE(maze.GetAt(x, y, 0));
+        else
+          REQUIRE(!maze.GetAt(x, y, 0));
       }
   }
 }

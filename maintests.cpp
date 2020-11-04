@@ -224,6 +224,6 @@ TEST_CASE("Helper methods", "[Backtrack]") {
       }
 
     averageRatioVariance /= 16.0;
-    REQUIRE(averageRatioiVariance <= allowedVariance);
+    REQUIRE(averageRatioVariance <= allowedVariance);
   }
 }

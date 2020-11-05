@@ -24,54 +24,41 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 
 	// Randomized move directions
 	int moveDirs[4] = { 0,1,2,3 };
+	OrderMoveDirs(moveDirs);
+
+	// Attempt each moveDir
+	for (int i = 0; i < 4; i++) {
+		// Determine indexes of next move direction
+		int nextX = moveDirs[i] > 1 ? x : x + MoveDirToIncrement(moveDirs[i]);
+		int nextY = moveDirs[i] < 2 ? y : y + MoveDirToIncrement(moveDirs[i]);
+
+		// Early exit if can't move that direction
+		if (!CanMoveTo(maze, visited, nextX, nextY))
+			continue;
+
+		// Break wall between this cell and the next
+		maze.BreakWallBetween(x, y, nextX, nextY);
+
+		// Move to the next cell
+		Recurse(maze, visited, nextX, nextY);
+	}
+}
+
+
+void Backtrack::OrderMoveDirs(int moveDirs[]) {
 	for (int i = 0; i < 4; i++) {
 		int swapInd = rand() % 4;
 		int temp = moveDirs[swapInd];
 		moveDirs[swapInd] = moveDirs[i];
 		moveDirs[i] = temp;
 	}
-
-	// Attempt each moveDir
-	for (int i = 0; i < 4; i++) {
-		int moveDir = moveDirs[i];
-
-		// Determine indexes of next move direction
-		int nextX = x;
-		int nextY = y;
-
-		if (moveDir == 0)
-			nextX = x + 1;
-		else if (moveDir == 1)
-			nextX = x - 1;
-		else if (moveDir == 2)
-			nextY = y + 1;
-		else if (moveDir == 3)
-			nextY = y - 1;
-
-		// Early exit if can't move that direction
-		if (!maze.IsIndexValid(nextX, nextY))
-			continue;
-		if (IsVisited(visited, maze.xLen, nextX, nextY))
-			continue;
-
-		// Break appropriate x-axis wall
-		if (nextX < x)
-			maze.BreakWallX(x, y);
-		else if (nextX > x)
-			maze.BreakWallX(nextX, y);
-
-		// Break appropriate y-axis wall
-		if (nextY < y)
-			maze.BreakWallY(x, y);
-		else if (nextY > y)
-			maze.BreakWallY(x, nextY);
-		
-		// Dig into the next cell
-		Recurse(maze, visited, nextX, nextY);
-	}
 }
 
-// True if cell at x,y has already been visited
-bool Backtrack::IsVisited(vector<bool> &visited, int xLen, int x, int y) {
-	return visited[x + (y * xLen)];
+int Backtrack::MoveDirToIncrement(int moveDir) {
+	return ((moveDir % 2) * 2) - 1;
+}
+
+// True if cell at (x,y) has a valid index and has not been visited
+bool Backtrack::CanMoveTo(MazeMap &maze, vector<bool> &visited, int x, int y) {
+	return maze.IsIndexValid(x, y) && !visited[x + (y * maze.xLen)];
 }

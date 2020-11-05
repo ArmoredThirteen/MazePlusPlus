@@ -30,16 +30,43 @@ bool MazeMap::IsIndexValid(int x, int y) {
 	return true;
 }
 
+
+bool MazeMap::GetAt(int x, int y, int wallIndex) {
+	if (!IsIndexValid(x, y))
+		throw std::out_of_range ("GetAt() given invalid x,y index(es)");
+	return cells[x + (y * xLen) + (wallIndex * xLen * yLen)];
+}
+
+void MazeMap::SetAt(int x, int y, int wallIndex, bool isWall) {
+	if (!IsIndexValid(x, y))
+		throw std::out_of_range ("SetAt() given invalid x,y index(es)");
+	cells[x + (y * xLen) + (wallIndex * xLen * yLen)] = isWall;
+}
+
+
 // Breaks the x-axis wall in cell at x,y (sets bit 0 to be false)
 void MazeMap::BreakWallX(int x, int y) {
-	//cells[x + (y * xLen) + (0 * xLen * yLen)] = false;
-	cells[x + (y * xLen)] = false;
+	SetAt(x, y, 0, false);
 }
 
 // Breaks the y-axis wall in cell at x,y (sets bit 1 to be false)
 void MazeMap::BreakWallY(int x, int y) {
-	//cells[x + (y * xLen) + (1 * xLen * yLen)] = false;
-	cells[x + (y * xLen) + (xLen * yLen)] = false;
+	SetAt(x, y, 1, false);
+}
+
+// Calls BreakWallX/Y to break the wall between the current and next cells
+// Depending on direction the changed cell is either at location one or two
+void MazeMap::BreakWallBetween(int xOne, int yOne, int xTwo, int yTwo) {
+	// Break appropriate x-axis wall
+	if (xTwo < xOne)
+		BreakWallX(xOne, yOne);
+	else if (xTwo > xOne)
+		BreakWallX(xTwo, yOne);
+	// Break appropriate y-axis wall
+	else if (yTwo < yOne)
+		BreakWallY(xOne, yOne);
+	else if (yTwo > yOne)
+		BreakWallY(xOne, yTwo);
 }
 
 
@@ -47,7 +74,7 @@ std::ostream& operator<< (std::ostream& strm, MazeMap& maze) {
 	for (int y = 0; y < maze.yLen; y++) {
 		for (int x = 0; x < maze.xLen; x++) {
 			for (int z = 0; z < 2; z++) {
-				strm << maze.cells[x + (y * maze.xLen) + (z * maze.xLen * maze.yLen)];
+				strm << maze.GetAt(x, y, z);
 			}
 			if (x < maze.xLen - 1)
 				strm << "-";

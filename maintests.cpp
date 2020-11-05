@@ -204,14 +204,12 @@ TEST_CASE("Helper methods", "[Backtrack]") {
   SECTION("Check OrderMoveDirs() ratio") {
     // Set random seed
     srand(time(NULL));
-    
+
     int orderCount = 120;
     float allowedVariance = 0.1;
 
     int moveDirs[4] = { 0,1,2,3 };
-    //unsigned int dirCounts[4][4];
     vector<vector<int>> dirCounts(4, vector<int>(4, 0));
-
 
     // Count the number of times each number shows in each position
     for (int count = 0; count < orderCount; count++) {
@@ -223,15 +221,16 @@ TEST_CASE("Helper methods", "[Backtrack]") {
 
     // Backtrack is full random and should have equal spread
     float averageRatioVariance = 0;
-    int expectedCounts = orderCount / 4;
+    float expectedCounts = (float)orderCount / (float)4;
     for (int i = 0; i < 4; i++)
       for (int k = 0; k < 4; k++) {
-        std::cout << dirCounts[i][k] << " ";
-        //float ratio = (float)dirCounts[i][k]/(float)(expectedCounts);
-        //averageRatioVariance = std::abs(1 - ratio);
+        std::cout << dirCounts[i][k] << "/" << (float)dirCounts[i][k]/(float)(expectedCounts) << " ";
+        float ratio = (float)dirCounts[i][k]/(float)(expectedCounts);
+        averageRatioVariance = std::abs(1 - ratio);
       }
 
-    //averageRatioVariance /= 16.0;
+    averageRatioVariance /= 16.0;
+    std::cout << endl << averageRatioVariance;
     //REQUIRE(averageRatioVariance <= allowedVariance);
     REQUIRE(false);
   }

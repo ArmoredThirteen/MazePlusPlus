@@ -211,12 +211,12 @@ TEST_CASE("Helper methods", "[Backtrack]") {
 
 
     // Count the number of times each number shows in each position
-    /*for (int count = 0; count < orderCount; count++) {
+    for (int count = 0; count < orderCount; count++) {
       Backtrack::OrderMoveDirs(moveDirs);
       // First index is the moveDir value, second index is where it was found
       for (int i = 0; i < 4; i++)
-        dirCounts[moveDirs[i]][i] = dirCounts[moveDirs[i]][i] + 1;
-    }*/
+        dirCounts[moveDirs[i]][i]++;
+    }
 
     // Backtrack is full random and should have equal spread
     float averageRatioVariance = 0;

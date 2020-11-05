@@ -205,23 +205,26 @@ TEST_CASE("Helper methods", "[Backtrack]") {
     // Set random seed
     srand(time(NULL));
 
-    int orderCount = 120;
+    // How many times to run OrderMoveDirs() to add to counts
+    int orderingOperations = 120;
+    // orderingOperations * 4 (number of move dirs) / 16 (values in table)
+    float expectedCounts = (float)orderingOperations / (float)4;
+    // Maximum average variance to succeed test
     float allowedVariance = 0.1;
 
     int moveDirs[4] = { 0,1,2,3 };
+    // First index is the move dir, second is the position it was ordered to
     vector<vector<int>> dirCounts(4, vector<int>(4, 0));
 
     // Count the number of times each number shows in each position
-    for (int count = 0; count < orderCount; count++) {
+    for (int op = 0; op < orderingOperations; op++) {
       Backtrack::OrderMoveDirs(moveDirs);
-      // First index is the moveDir value, second index is where it was found
       for (int i = 0; i < 4; i++)
         dirCounts[moveDirs[i]][i]++;
     }
 
     // Backtrack is full random and should have equal spread
     float averageRatioVariance = 0;
-    float expectedCounts = (float)orderCount / (float)4;
     for (int i = 0; i < 4; i++)
       for (int k = 0; k < 4; k++) {
         //std::cout << dirCounts[i][k] << "/" << (float)dirCounts[i][k]/(float)(expectedCounts) << " ";
@@ -232,5 +235,16 @@ TEST_CASE("Helper methods", "[Backtrack]") {
     averageRatioVariance /= 16.0;
     //std::cout << std::endl << averageRatioVariance;
     REQUIRE(averageRatioVariance <= allowedVariance);
+  }
+
+  SECTION("MoveDirToIncrement()") {
+    int valsToTest = 20;
+    for (int i = 0; i < valsToTest; i++) {
+      int increment = Backtrack::MoveDirToIncrement(i);
+      if (i % 2 == 0)
+        REQUIRE(increment == -1);
+      else
+        REQUIRE(increment == 1);
+    }
   }
 }

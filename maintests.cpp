@@ -6,6 +6,8 @@
 #include "MazeMap.h"
 #include "Backtrack.h"
 
+using std::vector;
+
 
 TEST_CASE("Initialized dimensions", "[MazeMap]") {
   int xLen = 5;
@@ -204,7 +206,9 @@ TEST_CASE("Helper methods", "[Backtrack]") {
     float allowedVariance = 0.1;
 
     int moveDirs[4] = { 0,1,2,3 };
-    unsigned int dirCounts[4][4];
+    //unsigned int dirCounts[4][4];
+    vector<vector<int>> dirCounts(4, vector<int>(4, 0));
+
 
     // Count the number of times each number shows in each position
     /*for (int count = 0; count < orderCount; count++) {
@@ -220,11 +224,12 @@ TEST_CASE("Helper methods", "[Backtrack]") {
     for (int i = 0; i < 4; i++)
       for (int k = 0; k < 4; k++) {
         std::cout << dirCounts[i][k] << " ";
-        float ratio = (float)dirCounts[i][k]/(float)(expectedCounts);
-        averageRatioVariance = std::abs(1 - ratio);
+        //float ratio = (float)dirCounts[i][k]/(float)(expectedCounts);
+        //averageRatioVariance = std::abs(1 - ratio);
       }
 
-    averageRatioVariance /= 16.0;
-    REQUIRE(averageRatioVariance <= allowedVariance);
+    //averageRatioVariance /= 16.0;
+    //REQUIRE(averageRatioVariance <= allowedVariance);
+    REQUIRE(false);
   }
 }

@@ -202,6 +202,9 @@ TEST_CASE("Throw exceptions", "[MazeMap]") {
 
 TEST_CASE("Helper methods", "[Backtrack]") {
   SECTION("Check OrderMoveDirs() ratio") {
+    // Set random seed
+    srand(time(NULL));
+    
     int orderCount = 120;
     float allowedVariance = 0.1;
 

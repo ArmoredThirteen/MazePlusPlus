@@ -230,7 +230,7 @@ TEST_CASE("Helper methods", "[Backtrack]") {
       }
 
     averageRatioVariance /= 16.0;
-    std::cout << endl << averageRatioVariance;
+    std::cout << std::endl << averageRatioVariance;
     //REQUIRE(averageRatioVariance <= allowedVariance);
     REQUIRE(false);
   }

@@ -201,7 +201,7 @@ TEST_CASE("Throw exceptions", "[MazeMap]") {
 
 
 TEST_CASE("Helper methods", "[Backtrack]") {
-  SECTION("Check OrderMoveDirs() ratio") {
+  /*SECTION("Check OrderMoveDirs() ratio") {
     // Set random seed
     srand(time(NULL));
 
@@ -235,7 +235,7 @@ TEST_CASE("Helper methods", "[Backtrack]") {
     averageRatioVariance /= 16.0;
     //std::cout << std::endl << averageRatioVariance;
     REQUIRE(averageRatioVariance <= allowedVariance);
-  }
+  }*/
 
   SECTION("MoveDirToIncrement()") {
     int valsToTest = 20;

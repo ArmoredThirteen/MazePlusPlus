@@ -1,4 +1,5 @@
 #include <stdlib.h> /* srand, rand */
+#include <algorithm>
 
 #include "Backtrack.h"
 

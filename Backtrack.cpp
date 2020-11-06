@@ -23,7 +23,7 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 	visited[x + (y * maze.xLen)] = true;
 
 	// Randomized move directions
-	int[] dirWeights = { 1, 1, 1, 1 };
+	int dirWeights[] = { 1, 1, 1, 1 };
 	vector<int> moveDirs = GetMoveDirs(dirWeights);
 
 	// Attempt each moveDir

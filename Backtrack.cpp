@@ -53,12 +53,12 @@ vector<int> Backtrack::GetMoveDirs(int dirWeights[4]) {
 	for (int i = 0; i < 4; i++) {
 		dirsCount += dirWeights[i];
 		for (int dir = 0; dir < dirWeights[i]; dir++)
-			weightedDirs::push_back(i);
+			weightedDirs.push_back(i);
 	}
 
 	// Randomize the weightedDirs
-	for (int i = 0; i < dirWeights; i++) {
-		int swapInd = rand() % dirWeights;
+	for (int i = 0; i < dirsCount; i++) {
+		int swapInd = rand() % dirsCount;
 		int temp = weightedDirs[swapInd];
 		weightedDirs[swapInd] = weightedDirs[i];
 		weightedDirs[i] = temp;
@@ -67,7 +67,7 @@ vector<int> Backtrack::GetMoveDirs(int dirWeights[4]) {
 	// Populate returnDirs with one of each dir based on which is found first
 	vector<int> returnDirs;
 	for (int i = 0; i < dirsCount; i++) {
-		if (std::find(returnDirs.begin(), returnDirs.end(), weightedDirs[i]) == v.end())
+		if (std::find(returnDirs.begin(), returnDirs.end(), weightedDirs[i]) == returnDirs.end())
 			returnDirs.push_back(dirWeights[i]);
 	}
 }

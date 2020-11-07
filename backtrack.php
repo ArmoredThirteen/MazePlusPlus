@@ -57,7 +57,6 @@
 	<p>Seed (0 for random): <input type="number" name="seed"
 					min="0"
 					value="<?php echo $_POST['seed'] ?? 0; ?>" /></p>
-	<p><input type="submit" value="Generate"/></p>
 
 	<hr>
 
@@ -73,4 +72,6 @@
 	<p>Rows (1-10): <input type="number" name="wFour"
 					min="1" max="10"
 					value="<?php echo $wFour; ?>" /></p>
+
+	<p><input type="submit" value="Generate"/></p>
 </form>

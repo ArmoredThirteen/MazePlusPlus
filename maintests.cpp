@@ -201,7 +201,7 @@ TEST_CASE("Throw exceptions", "[MazeMap]") {
 
 
 TEST_CASE("Helper methods", "[Backtrack]") {
-  /*SECTION("Check OrderMoveDirs() ratio") {
+  SECTION("Check OrderMoveDirs() ratio") {
     // Set random seed
     srand(time(NULL));
 
@@ -212,13 +212,13 @@ TEST_CASE("Helper methods", "[Backtrack]") {
     // Maximum average variance to succeed test
     float allowedVariance = 0.1;
 
-    int moveDirs[4] = { 0,1,2,3 };
+    int weights[4] = { 1, 1, 1, 1 };
     // First index is the move dir, second is the position it was ordered to
     vector<vector<int>> dirCounts(4, vector<int>(4, 0));
 
     // Count the number of times each number shows in each position
     for (int op = 0; op < orderingOperations; op++) {
-      Backtrack::OrderMoveDirs(moveDirs);
+      vector<int> moveDirs = Backtrack::GetMoveDirs(weights);
       for (int i = 0; i < 4; i++)
         dirCounts[moveDirs[i]][i]++;
     }
@@ -227,15 +227,15 @@ TEST_CASE("Helper methods", "[Backtrack]") {
     float averageRatioVariance = 0;
     for (int i = 0; i < 4; i++)
       for (int k = 0; k < 4; k++) {
-        //std::cout << dirCounts[i][k] << "/" << (float)dirCounts[i][k]/(float)(expectedCounts) << " ";
+        std::cout << dirCounts[i][k] << "/" << (float)dirCounts[i][k]/(float)(expectedCounts) << " ";
         float ratio = (float)dirCounts[i][k]/(float)(expectedCounts);
         averageRatioVariance = std::abs(1 - ratio);
       }
 
     averageRatioVariance /= 16.0;
-    //std::cout << std::endl << averageRatioVariance;
+    std::cout << std::endl << averageRatioVariance;
     REQUIRE(averageRatioVariance <= allowedVariance);
-  }*/
+  }
 
   SECTION("MoveDirToIncrement()") {
     int valsToTest = 20;

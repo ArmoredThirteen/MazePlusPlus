@@ -24,8 +24,7 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 	visited[x + (y * maze.xLen)] = true;
 
 	// Randomized move directions
-	int dirWeights[] = { 1, 1, 1, 1 };
-	vector<int> moveDirs = GetMoveDirs(dirWeights);
+	vector<int> moveDirs = GetMoveDirs({ 1, 1, 1, 1 });
 
 	// Attempt each moveDir
 	for (int i = 0; i < 4; i++) {
@@ -46,14 +45,14 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 }
 
 
-vector<int> Backtrack::GetMoveDirs(int dirWeights[4]) {
+vector<int> Backtrack::GetMoveDirs(std::array<int, 4> weights) {
 	int dirsCount = 0;
 	vector<int> weightedDirs;
 
 	// Add each dir a number of times according to dirWeights[]
 	for (int i = 0; i < 4; i++) {
-		dirsCount += dirWeights[i];
-		for (int dir = 0; dir < dirWeights[i]; dir++)
+		dirsCount += weights[i];
+		for (int dir = 0; dir < weights[i]; dir++)
 			weightedDirs.push_back(i);
 	}
 
@@ -68,6 +67,7 @@ vector<int> Backtrack::GetMoveDirs(int dirWeights[4]) {
 	// Populate returnDirs with one of each dir based on which is found first
 	vector<int> returnDirs;
 	for (int i = 0; i < dirsCount; i++) {
+		// If current weightedDirs does not exist in returnDirs
 		if (std::find(returnDirs.begin(), returnDirs.end(), weightedDirs[i]) == returnDirs.end())
 			returnDirs.push_back(weightedDirs[i]);
 	}

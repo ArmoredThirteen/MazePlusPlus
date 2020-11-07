@@ -3,25 +3,46 @@
 	$cols = $_POST['cols'] ?? 10;
 	$seed = $_POST['seed'] ?? 0;
 
-	$escapeRows = escapeshellarg($rows);
-	$escapeCols = escapeshellarg($cols);
-	$escapeSeed = escapeshellarg($seed);
+	$startX = $_POST['startX'] ?? 0;
+	$startY = $_POST['startY'] ?? 0;
 
-	// seed, xLen, yLen
-	exec("./MazeGen.out backtrack $escapeSeed $escapeCols $escapeRows", $out, $return);
+	$wOne = $_POST['wOne'] ?? 1;
+	$wTwo = $_POST['wTwo'] ?? 1;
+	$wThree = $_POST['wThree'] ?? 1;
+	$wFour = $_POST['wFour'] ?? 1;
+
+	$escRows = escapeshellarg($rows);
+	$escCols = escapeshellarg($cols);
+	$escSeed = escapeshellarg($seed);
+
+	$escStartX = escapeshellarg($startX);
+	$escStartY = escapeshellarg($startY);
+
+	$escWOne = escapeshellarg($wOne);
+	$escWTwo = escapeshellarg($wTwo);
+	$escWThree = escapeshellarg($wThree);
+	$escWFour = escapeshellarg($wFour);
+
+
+	// seed, xLen, yLen, startX, startY, direction weights 1-4
+	exec("./MazeGen.out backtrack $escSeed $escCols $escRows", $out, $return);
+	//exec("./MazeGen.out backtrack $escSeed $escCols $escRows $escStartX $escStartY $escWOne $escWTwo $escWThree $escWFour", $out, $return);
 
 	if ($return) {
-		echo "Generation failed :'(";
+		echo "Generation failed :'(<br>";
+		foreach ($out as $val) {
+			echo "$val<br>";
+		}
 	}
 	else {
 		// Pass maze data to image generation page and display returned image
 		echo "<img src='mazeImage.php?rows=$rows&cols=$cols&maze=$out[0]' alt='Generated Maze' />";
-
-		// Print entire output text
-		/*foreach ($out as $val) {
-			echo "$val\r\n";
-		}*/
 	}
+
+	// Print entire output text
+	/*foreach ($out as $val) {
+		echo "$val\r\n";
+	}*/
 ?>
 
 <br>

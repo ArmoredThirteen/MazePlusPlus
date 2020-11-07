@@ -10,7 +10,7 @@
 class Backtrack {
 	public:
 		static void Generate(MazeMap &maze);
-		static void Generate(MazeMap &maze, std::array<int, 4> &weights, int startX, int startY);
+		static void Generate(MazeMap &maze, std::array<int, 4> weights, int startX, int startY);
 
 		static std::vector<int> GetMoveDirs(std::array<int, 4> &weights);
 		static int MoveDirToIncrement(int moveDir);

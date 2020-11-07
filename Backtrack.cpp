@@ -5,6 +5,7 @@
 #include "Backtrack.h"
 
 using std::vector;
+using std::array;
 
 
 /*
@@ -19,13 +20,13 @@ void Backtrack::Generate(MazeMap &maze) {
 	Generate(maze, { 1, 1, 1, 1 }, 0, 0);
 }
 
-void Backtrack::Generate(MazeMap &maze, std::array<int, 4> &weights, int startX, int startY) {
+void Backtrack::Generate(MazeMap &maze, array<int, 4> weights, int startX, int startY) {
 	vector<bool> visited(maze.xLen * maze.yLen, false);
 	Backtrack::Recurse(maze, visited, weights, startX, startY);
 }
 
 
-void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, std::array<int, 4> &weights, int x, int y) {
+void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, array<int, 4> &weights, int x, int y) {
 	// Mark current as visited
 	visited[x + (y * maze.xLen)] = true;
 
@@ -51,7 +52,7 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, std::array<int, 4>
 }
 
 
-vector<int> Backtrack::GetMoveDirs(std::array<int, 4> &weights) {
+vector<int> Backtrack::GetMoveDirs(array<int, 4> &weights) {
 	int dirsCount = 0;
 	vector<int> weightedDirs;
 

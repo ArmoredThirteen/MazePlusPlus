@@ -2,6 +2,7 @@
 #define BACKTRACK_H
 
 #include <vector>
+#include <array>
 
 #include "MazeMap.h"
 

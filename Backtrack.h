@@ -10,7 +10,7 @@ class Backtrack {
 	public:
 		static void Generate(MazeMap &maze);
 
-		static std::vector<int> GetMoveDirs(int dirWeights[]);
+		static std::vector<int> GetMoveDirs(std::array<int, 4> weights);
 		static int MoveDirToIncrement(int moveDir);
 		static bool CanMoveTo(MazeMap &maze, std::vector<bool> &visited, int x, int y);
 

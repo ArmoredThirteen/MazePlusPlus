@@ -47,7 +47,7 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, array<int, 4> &wei
 		maze.BreakWallBetween(x, y, nextX, nextY);
 
 		// Move to the next cell
-		Recurse(maze, visited, nextX, nextY);
+		Recurse(maze, visited, weights, nextX, nextY);
 	}
 }
 

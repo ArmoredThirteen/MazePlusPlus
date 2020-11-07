@@ -69,7 +69,7 @@ vector<int> Backtrack::GetMoveDirs(int dirWeights[4]) {
 	vector<int> returnDirs;
 	for (int i = 0; i < dirsCount; i++) {
 		if (std::find(returnDirs.begin(), returnDirs.end(), weightedDirs[i]) == returnDirs.end())
-			returnDirs.push_back(dirWeights[i]);
+			returnDirs.push_back(weightedDirs[i]);
 	}
 
 	return returnDirs;

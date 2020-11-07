@@ -16,16 +16,21 @@ using std::vector;
  * Keeps doing this until it bubbles all the way back up and recursion ends.
  */
 void Backtrack::Generate(MazeMap &maze) {
-	vector<bool> visited(maze.xLen * maze.yLen, false);
-	Backtrack::Recurse(maze, visited, 0, 0);
+	Generate(maze, { 1, 1, 1, 1 }, 0, 0);
 }
 
-void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
+void Backtrack::Generate(MazeMap &maze, std::array<int, 4> &weights, int startX, int startY) {
+	vector<bool> visited(maze.xLen * maze.yLen, false);
+	Backtrack::Recurse(maze, visited, weights, startX, startY);
+}
+
+
+void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, std::array<int, 4> &weights, int x, int y) {
 	// Mark current as visited
 	visited[x + (y * maze.xLen)] = true;
 
 	// Randomized move directions
-	vector<int> moveDirs = GetMoveDirs({ 1, 1, 1, 1 });
+	vector<int> moveDirs = GetMoveDirs(weights);
 
 	// Attempt each moveDir
 	for (int i = 0; i < 4; i++) {
@@ -46,7 +51,7 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 }
 
 
-vector<int> Backtrack::GetMoveDirs(std::array<int, 4> weights) {
+vector<int> Backtrack::GetMoveDirs(std::array<int, 4> &weights) {
 	int dirsCount = 0;
 	vector<int> weightedDirs;
 

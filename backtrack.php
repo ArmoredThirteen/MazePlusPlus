@@ -3,8 +3,8 @@
 	$cols = $_POST['cols'] ?? 10;
 	$seed = $_POST['seed'] ?? 0;
 
-	$startX = $_POST['startX'] ?? 0;
-	$startY = $_POST['startY'] ?? 0;
+	$startX = $_POST['startX'] ?? $rows/2;
+	$startY = $_POST['startY'] ?? $cols/2;
 
 	$wOne = $_POST['wOne'] ?? 1;
 	$wTwo = $_POST['wTwo'] ?? 1;
@@ -50,28 +50,29 @@
 <form method="post" action="backtrack.php">
 	<p>Rows (5-25): <input type="number" name="rows"
 					min="5" max="25"
-					value="<?php echo $_POST['rows'] ?? 10; ?>" /></p>
+					value="<?php echo $rows; ?>" /></p>
 	<p>Cols (5-25): <input type="number" name="cols"
 					min="5" max="25"
-					value="<?php echo $_POST['cols'] ?? 10; ?>" /></p>
+					value="<?php echo $cols; ?>" /></p>
 	<p>Seed (0 for random): <input type="number" name="seed"
 					min="0"
-					value="<?php echo $_POST['seed'] ?? 0; ?>" /></p>
+					value="<?php echo $seed; ?>" /></p>
+
+	<p><input type="submit" value="Generate"/></p>
 
 	<hr>
 
-	<p>Rows (1-10): <input type="number" name="wOne"
-					min="1" max="10"
+	<p>Movement direction weights</p>
+	<p>Rows (1-20): <input type="number" name="Left"
+					min="1" max="20"
 					value="<?php echo $wOne; ?>" /></p>
-	<p>Rows (1-10): <input type="number" name="wTwo"
-					min="1" max="10"
+	<p>Rows (1-20): <input type="number" name="Right"
+					min="1" max="20"
 					value="<?php echo $wTwo; ?>" /></p>
-	<p>Rows (1-10): <input type="number" name="wThree"
-					min="1" max="10"
+	<p>Rows (1-20): <input type="number" name="Up"
+					min="1" max="20"
 					value="<?php echo $wThree; ?>" /></p>
-	<p>Rows (1-10): <input type="number" name="wFour"
-					min="1" max="10"
+	<p>Rows (1-20): <input type="number" name="Down"
+					min="1" max="20"
 					value="<?php echo $wFour; ?>" /></p>
-
-	<p><input type="submit" value="Generate"/></p>
 </form>

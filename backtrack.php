@@ -25,8 +25,7 @@
 
 
 	// seed, xLen, yLen, startX, startY, direction weights 1-4
-	exec("./MazeGen.out backtrack $escSeed $escCols $escRows", $out, $return);
-	//exec("./MazeGen.out backtrack $escSeed $escCols $escRows $escStartX $escStartY $escWOne $escWTwo $escWThree $escWFour", $out, $return);
+	exec("./MazeGen.out backtrack $escSeed $escCols $escRows $escStartX $escStartY $escWOne $escWTwo $escWThree $escWFour", $out, $return);
 
 	if ($return) {
 		echo "Generation failed :'(<br>";

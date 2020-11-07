@@ -3,39 +3,79 @@
 	$cols = $_POST['cols'] ?? 10;
 	$seed = $_POST['seed'] ?? 0;
 
-	$escapeRows = escapeshellarg($rows);
-	$escapeCols = escapeshellarg($cols);
-	$escapeSeed = escapeshellarg($seed);
+	$startX = $_POST['startX'] ?? $rows/2;
+	$startY = $_POST['startY'] ?? $cols/2;
 
-	// seed, xLen, yLen
-	exec("./MazeGen.out backtrack $escapeSeed $escapeCols $escapeRows", $out, $return);
+	$wOne = $_POST['wOne'] ?? 1;
+	$wTwo = $_POST['wTwo'] ?? 1;
+	$wThree = $_POST['wThree'] ?? 1;
+	$wFour = $_POST['wFour'] ?? 1;
+
+	$escRows = escapeshellarg($rows);
+	$escCols = escapeshellarg($cols);
+	$escSeed = escapeshellarg($seed);
+
+	$escStartX = escapeshellarg($startX);
+	$escStartY = escapeshellarg($startY);
+
+	$escWOne = escapeshellarg($wOne);
+	$escWTwo = escapeshellarg($wTwo);
+	$escWThree = escapeshellarg($wThree);
+	$escWFour = escapeshellarg($wFour);
+
+
+	// seed, xLen, yLen, startX, startY, direction weights 1-4
+	exec("./MazeGen.out backtrack $escSeed $escCols $escRows $escStartX $escStartY $escWOne $escWTwo $escWThree $escWFour", $out, $return);
 
 	if ($return) {
-		echo "Generation failed :'(";
+		echo "Generation failed :'(<br>";
+		foreach ($out as $val) {
+			echo "$val<br>";
+		}
 	}
 	else {
 		// Pass maze data to image generation page and display returned image
 		echo "<img src='mazeImage.php?rows=$rows&cols=$cols&maze=$out[0]' alt='Generated Maze' />";
-
-		// Print entire output text
-		/*foreach ($out as $val) {
-			echo "$val\r\n";
-		}*/
 	}
+
+	// Print entire output text
+	/*foreach ($out as $val) {
+		echo "$val\r\n";
+	}*/
 ?>
 
 <br>
 <hr>
 
 <form method="post" action="backtrack.php">
+	<p>Basic settings</p>
 	<p>Rows (5-25): <input type="number" name="rows"
 					min="5" max="25"
-					value="<?php echo $_POST['rows'] ?? 10; ?>" /></p>
+					value="<?php echo $rows; ?>" /></p>
 	<p>Cols (5-25): <input type="number" name="cols"
 					min="5" max="25"
-					value="<?php echo $_POST['cols'] ?? 10; ?>" /></p>
+					value="<?php echo $cols; ?>" /></p>
 	<p>Seed (0 for random): <input type="number" name="seed"
 					min="0"
-					value="<?php echo $_POST['seed'] ?? 0; ?>" /></p>
+					value="<?php echo $seed; ?>" /></p>
+
+	<hr>
+
+	<p>Movement direction weights</p>
+	<p>Left (1-20): <input type="number" name="wOne"
+					min="1" max="20"
+					value="<?php echo $wOne; ?>" /></p>
+	<p>Right (1-20): <input type="number" name="wTwo"
+					min="1" max="20"
+					value="<?php echo $wTwo; ?>" /></p>
+	<p>Up (1-20): <input type="number" name="wThree"
+					min="1" max="20"
+					value="<?php echo $wThree; ?>" /></p>
+	<p>Down (1-20): <input type="number" name="wFour"
+					min="1" max="20"
+					value="<?php echo $wFour; ?>" /></p>
+
+	<hr>
+	
 	<p><input type="submit" value="Generate"/></p>
 </form>

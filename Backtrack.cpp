@@ -1,8 +1,11 @@
 #include <stdlib.h> /* srand, rand */
+#include <algorithm>
+#include <array>
 
 #include "Backtrack.h"
 
 using std::vector;
+using std::array;
 
 
 /*
@@ -14,17 +17,21 @@ using std::vector;
  * Keeps doing this until it bubbles all the way back up and recursion ends.
  */
 void Backtrack::Generate(MazeMap &maze) {
-	vector<bool> visited(maze.xLen * maze.yLen, false);
-	Backtrack::Recurse(maze, visited, 0, 0);
+	Generate(maze, 0, 0, { 1, 1, 1, 1 });
 }
 
-void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
+void Backtrack::Generate(MazeMap &maze, int startX, int startY, array<int, 4> weights) {
+	vector<bool> visited(maze.xLen * maze.yLen, false);
+	Backtrack::Recurse(maze, visited, startX, startY, weights);
+}
+
+
+void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y, array<int, 4> &weights) {
 	// Mark current as visited
 	visited[x + (y * maze.xLen)] = true;
 
 	// Randomized move directions
-	int moveDirs[4] = { 0,1,2,3 };
-	OrderMoveDirs(moveDirs);
+	vector<int> moveDirs = GetMoveDirs(weights);
 
 	// Attempt each moveDir
 	for (int i = 0; i < 4; i++) {
@@ -40,18 +47,39 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y) {
 		maze.BreakWallBetween(x, y, nextX, nextY);
 
 		// Move to the next cell
-		Recurse(maze, visited, nextX, nextY);
+		Recurse(maze, visited, nextX, nextY, weights);
 	}
 }
 
 
-void Backtrack::OrderMoveDirs(int moveDirs[]) {
+vector<int> Backtrack::GetMoveDirs(array<int, 4> &weights) {
+	int dirsCount = 0;
+	vector<int> weightedDirs;
+
+	// Add each dir a number of times according to dirWeights[]
 	for (int i = 0; i < 4; i++) {
-		int swapInd = rand() % 4;
-		int temp = moveDirs[swapInd];
-		moveDirs[swapInd] = moveDirs[i];
-		moveDirs[i] = temp;
+		dirsCount += weights[i];
+		for (int dir = 0; dir < weights[i]; dir++)
+			weightedDirs.push_back(i);
 	}
+
+	// Randomize the weightedDirs
+	for (int i = 0; i < dirsCount; i++) {
+		int swapInd = rand() % dirsCount;
+		int temp = weightedDirs[swapInd];
+		weightedDirs[swapInd] = weightedDirs[i];
+		weightedDirs[i] = temp;
+	}
+
+	// Populate returnDirs with one of each dir based on which is found first
+	vector<int> returnDirs;
+	for (int i = 0; i < dirsCount; i++) {
+		// If current weightedDirs does not exist in returnDirs
+		if (std::find(returnDirs.begin(), returnDirs.end(), weightedDirs[i]) == returnDirs.end())
+			returnDirs.push_back(weightedDirs[i]);
+	}
+
+	return returnDirs;
 }
 
 int Backtrack::MoveDirToIncrement(int moveDir) {

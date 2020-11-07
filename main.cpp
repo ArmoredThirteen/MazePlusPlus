@@ -42,10 +42,34 @@ int main(int argc, char *argv[])
 	// Set random seed
 	srand(seed > 0 ? seed : time(NULL));
 
-	// Make maze
+	// Initialize blank maze
 	MazeMap maze(xLen, yLen);
-	if (genMethod == "backtrack")
-		Backtrack::Generate(maze);
+
+	// Run appropriate generation over the maze
+	if (genMethod == "backtrack") {
+		int startX = atoi(argv[5]);
+		int startY = atoi(argv[6]);
+
+		int wOne = atoi(argv[7]);
+		int wTwo = atoi(argv[8]);
+		int wThree = atoi(argv[9]);
+		int wFour = atoi(argv[10]);
+
+		if (startX < 0 || startY < 0) {
+			cout << "Starting x and y must be a positive number";
+			return -1;
+		}
+		if (startX >= xLen || startY >= yLen) {
+			cout << "Starting x and y must be lower than max maze dimensions";
+			return -1;
+		}
+		if (wOne < 1 || wTwo < 1 || wThree < 1 || wFour < 1) {
+			cout << "Move direction weights must be 1 or higher";
+			return -1;
+		}
+
+		Backtrack::Generate(maze, startX, startY, { wOne, wTwo, wThree, wFour });
+	}
 	else {
 		cout << "Could not find given maze generation method: " << argv[1];
 		return -1;

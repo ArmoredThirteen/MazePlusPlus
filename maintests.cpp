@@ -2,6 +2,7 @@
 #include "catch_amalgamated.hpp"
 
 #include <iostream>
+#include <array>
 
 #include "MazeMap.h"
 #include "Backtrack.h"
@@ -212,13 +213,13 @@ TEST_CASE("Helper methods", "[Backtrack]") {
     // Maximum average variance to succeed test
     float allowedVariance = 0.1;
 
-    int moveDirs[4] = { 0,1,2,3 };
+    std::array<int, 4> weights = { 1, 1, 1, 1 };
     // First index is the move dir, second is the position it was ordered to
     vector<vector<int>> dirCounts(4, vector<int>(4, 0));
 
     // Count the number of times each number shows in each position
     for (int op = 0; op < orderingOperations; op++) {
-      Backtrack::OrderMoveDirs(moveDirs);
+      vector<int> moveDirs = Backtrack::GetMoveDirs(weights);
       for (int i = 0; i < 4; i++)
         dirCounts[moveDirs[i]][i]++;
     }

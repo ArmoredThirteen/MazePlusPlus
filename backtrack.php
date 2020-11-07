@@ -58,4 +58,19 @@
 					min="0"
 					value="<?php echo $_POST['seed'] ?? 0; ?>" /></p>
 	<p><input type="submit" value="Generate"/></p>
+
+	<hr>
+
+	<p>Rows (1-10): <input type="number" name="wOne"
+					min="1" max="10"
+					value="<?php echo $wOne; ?>" /></p>
+	<p>Rows (1-10): <input type="number" name="wTwo"
+					min="1" max="10"
+					value="<?php echo $wTwo; ?>" /></p>
+	<p>Rows (1-10): <input type="number" name="wThree"
+					min="1" max="10"
+					value="<?php echo $wThree; ?>" /></p>
+	<p>Rows (1-10): <input type="number" name="wFour"
+					min="1" max="10"
+					value="<?php echo $wFour; ?>" /></p>
 </form>

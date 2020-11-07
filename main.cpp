@@ -60,11 +60,11 @@ int main(int argc, char *argv[])
 			return -1;
 		}
 		if (startX >= xLen || startY >= yLen) {
-			cout << "Starting x and y must be lower than max maze dimensions"
+			cout << "Starting x and y must be lower than max maze dimensions";
 			return -1;
 		}
 		if (weightOne < 1 || weightTwo < 1 || weightThree < 1 || weightFour < 1) {
-			cout << "Move direction weights must be 1 or higher"
+			cout << "Move direction weights must be 1 or higher";
 			return -1;
 		}
 

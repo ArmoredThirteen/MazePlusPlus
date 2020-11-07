@@ -48,6 +48,7 @@
 <hr>
 
 <form method="post" action="backtrack.php">
+	<p>Basic settings</p>
 	<p>Rows (5-25): <input type="number" name="rows"
 					min="5" max="25"
 					value="<?php echo $rows; ?>" /></p>
@@ -61,18 +62,20 @@
 	<hr>
 
 	<p>Movement direction weights</p>
-	<p>Rows (1-20): <input type="number" name="Left"
+	<p>Left (1-20): <input type="number" name="wOne"
 					min="1" max="20"
 					value="<?php echo $wOne; ?>" /></p>
-	<p>Rows (1-20): <input type="number" name="Right"
+	<p>Right (1-20): <input type="number" name="wTwo"
 					min="1" max="20"
 					value="<?php echo $wTwo; ?>" /></p>
-	<p>Rows (1-20): <input type="number" name="Up"
+	<p>Up (1-20): <input type="number" name="wThree"
 					min="1" max="20"
 					value="<?php echo $wThree; ?>" /></p>
-	<p>Rows (1-20): <input type="number" name="Down"
+	<p>Down (1-20): <input type="number" name="wFour"
 					min="1" max="20"
 					value="<?php echo $wFour; ?>" /></p>
 
+	<hr>
+	
 	<p><input type="submit" value="Generate"/></p>
 </form>

@@ -58,8 +58,6 @@
 					min="0"
 					value="<?php echo $seed; ?>" /></p>
 
-	<p><input type="submit" value="Generate"/></p>
-
 	<hr>
 
 	<p>Movement direction weights</p>
@@ -75,4 +73,6 @@
 	<p>Rows (1-20): <input type="number" name="Down"
 					min="1" max="20"
 					value="<?php echo $wFour; ?>" /></p>
+
+	<p><input type="submit" value="Generate"/></p>
 </form>

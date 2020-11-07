@@ -228,13 +228,13 @@ TEST_CASE("Helper methods", "[Backtrack]") {
     float averageRatioVariance = 0;
     for (int i = 0; i < 4; i++)
       for (int k = 0; k < 4; k++) {
-        std::cout << dirCounts[i][k] << "/" << (float)dirCounts[i][k]/(float)(expectedCounts) << " ";
+        //std::cout << dirCounts[i][k] << "/" << (float)dirCounts[i][k]/(float)(expectedCounts) << " ";
         float ratio = (float)dirCounts[i][k]/(float)(expectedCounts);
         averageRatioVariance = std::abs(1 - ratio);
       }
 
     averageRatioVariance /= 16.0;
-    std::cout << std::endl << averageRatioVariance;
+    //std::cout << std::endl << averageRatioVariance;
     REQUIRE(averageRatioVariance <= allowedVariance);
   }
 

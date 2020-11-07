@@ -17,16 +17,16 @@ using std::array;
  * Keeps doing this until it bubbles all the way back up and recursion ends.
  */
 void Backtrack::Generate(MazeMap &maze) {
-	Generate(maze, { 1, 1, 1, 1 }, 0, 0);
+	Generate(maze, 0, 0, { 1, 1, 1, 1 });
 }
 
-void Backtrack::Generate(MazeMap &maze, array<int, 4> weights, int startX, int startY) {
+void Backtrack::Generate(MazeMap &maze, int startX, int startY, array<int, 4> weights) {
 	vector<bool> visited(maze.xLen * maze.yLen, false);
-	Backtrack::Recurse(maze, visited, weights, startX, startY);
+	Backtrack::Recurse(maze, visited, startX, startY, weights);
 }
 
 
-void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, array<int, 4> &weights, int x, int y) {
+void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y, array<int, 4> &weights) {
 	// Mark current as visited
 	visited[x + (y * maze.xLen)] = true;
 
@@ -47,7 +47,7 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, array<int, 4> &wei
 		maze.BreakWallBetween(x, y, nextX, nextY);
 
 		// Move to the next cell
-		Recurse(maze, visited, weights, nextX, nextY);
+		Recurse(maze, visited, nextX, nextY, weights);
 	}
 }
 

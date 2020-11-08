@@ -48,7 +48,7 @@ else {
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Insert Title Here</title>
+    <title>Backtrack</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -62,10 +62,10 @@ else {
             <div class="col-sm-12 col-md-9">
                 <?php if(isset($image)) echo $image; ?>
                 <?php if(isset($response))?>
-                <div class="alert alert-danger">
+                <!--<div class="alert alert-danger">
                     <b>An error occured:</b> <?php echo $response; ?><br/>
                     <?php print_r($debug); ?>
-                </div>
+                </div>-->
 
                 <form method="post" action="backtrack.php">
                     <h3 class="font-weight-bold">Basic Settings</h3>

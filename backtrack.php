@@ -1,15 +1,12 @@
 <?php
 
 // Set Default Values
-$mazeImage = null;
-$response = null;
-
 $rows = $_POST['rows'] ?? 10;
 $cols = $_POST['cols'] ?? 10;
 $seed = $_POST['seed'] ?? 0;
 
-$startX = $_POST['startX'] ?? $rows - 1;
-$startY = $_POST['startY'] ?? $cols - 1;
+$startX = $_POST['startX'] ?? 0;
+$startY = $_POST['startY'] ?? 0;
 
 $wOne = $_POST['wOne'] ?? 1;
 $wTwo = $_POST['wTwo'] ?? 1;

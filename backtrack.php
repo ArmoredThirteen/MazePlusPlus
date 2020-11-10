@@ -28,7 +28,7 @@ $escWFour = escapeshellarg($wFour);
 
 
 // seed, xLen, yLen, startX, startY, direction weights 1-4
-shell_exec("./MazeGen.out backtrack $escSeed $escCols $escRows $escStartX $escStartY $escWOne $escWTwo $escWThree $escWFour", $out, $return);
+exec("./MazeGen.out backtrack $escSeed $escCols $escRows $escStartX $escStartY $escWOne $escWTwo $escWThree $escWFour", $out, $return);
 
 if ($return) {
     $response = "Generation failed. :(";

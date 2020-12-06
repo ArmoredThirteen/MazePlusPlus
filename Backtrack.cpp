@@ -52,6 +52,10 @@ void Backtrack::Recurse(MazeMap &maze, vector<bool> &visited, int x, int y, arra
 }
 
 
+// w1 = -x
+// w2 = +x
+// w3 = -y
+// w4 = +y
 vector<int> Backtrack::GetMoveDirs(array<int, 4> &weights) {
 	int dirsCount = 0;
 	vector<int> weightedDirs;

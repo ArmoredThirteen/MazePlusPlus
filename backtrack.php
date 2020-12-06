@@ -5,8 +5,8 @@ $rows = $_POST['rows'] ?? 10;
 $cols = $_POST['cols'] ?? 10;
 $seed = $_POST['seed'] ?? 0;
 
-$startX = $_POST['startX'] ?? $rows;
-$startY = $_POST['startY'] ?? $cols;
+$startRow = $_POST['startRow'] ?? $rows;
+$startCol = $_POST['startCol'] ?? $cols;
 
 $wOne = $_POST['wOne'] ?? 1;
 $wTwo = $_POST['wTwo'] ?? 1;
@@ -17,8 +17,8 @@ $escRows = escapeshellarg($rows);
 $escCols = escapeshellarg($cols);
 $escSeed = escapeshellarg($seed);
 
-$escStartX = escapeshellarg($startX);
-$escStartY = escapeshellarg($startY);
+$escStartRow = escapeshellarg($startRow);
+$escStartCol = escapeshellarg($startCol);
 
 $escWOne = escapeshellarg($wOne);
 $escWTwo = escapeshellarg($wTwo);
@@ -26,8 +26,8 @@ $escWThree = escapeshellarg($wThree);
 $escWFour = escapeshellarg($wFour);
 
 
-// seed, xLen, yLen, startX, startY, direction weights 1-4
-exec("./MazeGen.out backtrack $escSeed $escCols $escRows $escStartX $escStartY $escWOne $escWTwo $escWThree $escWFour", $out, $return);
+// seed, xLen, yLen, startRow, startCol, direction weights 1-4
+exec("./MazeGen.out backtrack $escSeed $escCols $escRows $escStartCol $escStartRow $escWOne $escWTwo $escWThree $escWFour", $out, $return);
 
 if ($return) {
     $response = "Generation failed. :(";
@@ -84,13 +84,13 @@ else {
                             </div>
                             <div class="form-group col-md-3">
                                 Starting X:
-                                <input type="number" class="form-control"  name="startX" id="x" min="0"
-                                    max="" value="<?php echo $startX; ?>" />
+                                <input type="number" class="form-control"  name="startRow" id="x" min="0"
+                                    max="" value="<?php echo $startRow; ?>" />
                             </div>
                             <div class="form-group col-md-3">
                                 Starting Y:
-                                <input type="number" class="form-control"  name="startY" id="y" min="0"
-                                    max="" value="<?php echo $startY; ?>" />
+                                <input type="number" class="form-control"  name="startCol" id="y" min="0"
+                                    max="" value="<?php echo $startCol; ?>" />
                             </div>
                         </div>
 

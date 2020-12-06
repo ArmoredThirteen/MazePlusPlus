@@ -5,8 +5,8 @@ $rows = $_POST['rows'] ?? 10;
 $cols = $_POST['cols'] ?? 10;
 $seed = $_POST['seed'] ?? 0;
 
-$startRow = $_POST['startRow'] ?? $rows;
-$startCol = $_POST['startCol'] ?? $cols;
+$startRow = $_POST['startRow'] ?? 0;
+$startCol = $_POST['startCol'] ?? 0;
 
 $wOne = $_POST['wOne'] ?? 1;
 $wTwo = $_POST['wTwo'] ?? 1;
@@ -83,12 +83,12 @@ else {
                                     value="<?php echo $cols; ?>" />
                             </div>
                             <div class="form-group col-md-3">
-                                Starting X:
+                                Starting Row:
                                 <input type="number" class="form-control"  name="startRow" id="x" min="0"
                                     max="" value="<?php echo $startRow; ?>" />
                             </div>
                             <div class="form-group col-md-3">
-                                Starting Y:
+                                Starting Col:
                                 <input type="number" class="form-control"  name="startCol" id="y" min="0"
                                     max="" value="<?php echo $startCol; ?>" />
                             </div>

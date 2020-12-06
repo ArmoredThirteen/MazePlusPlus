@@ -5,9 +5,8 @@ $rows = $_POST['rows'] ?? 10;
 $cols = $_POST['cols'] ?? 10;
 $seed = $_POST['seed'] ?? 0;
 
-$start
- = $_POST['startX'] ?? $rows - 1;
-$startY = $_POST['startY'] ?? $cols - 1;
+$startX = $_POST['startX'] ?? $rows;
+$startY = $_POST['startY'] ?? $cols;
 
 $wOne = $_POST['wOne'] ?? 1;
 $wTwo = $_POST['wTwo'] ?? 1;
@@ -41,10 +40,12 @@ else {
     $image = "<img src='mazeImage.php?rows=$rows&cols=$cols&maze=$out[0]' alt='Generated Maze' />";
 }
 ?>
+
 <!doctype html>
 <html lang="en">
+
 <head>
-    <title>Insert Title Here</title>
+    <title>Maze Plus Plus</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -52,6 +53,7 @@ else {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
     <div class="container mt-4">
         <div class="row justify-content-center">
@@ -83,12 +85,12 @@ else {
                             <div class="form-group col-md-3">
                                 Starting X:
                                 <input type="number" class="form-control"  name="startX" id="x" min="0"
-                                    max="" value="0" />
+                                    max="" value="<?php echo $startX; ?>" />
                             </div>
                             <div class="form-group col-md-3">
                                 Starting Y:
                                 <input type="number" class="form-control"  name="startY" id="y" min="0"
-                                    max="" value="0" />
+                                    max="" value="<?php echo $startY; ?>" />
                             </div>
                         </div>
 

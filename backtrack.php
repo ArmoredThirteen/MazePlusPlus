@@ -154,7 +154,6 @@ else {
                 max: rows.val() - 1,
                 value: Math.min(startRow.val(), (rows.val() - 1))
             });
-            startRow.val(Math.min(startRow.val(), (rows.val() - 1)));
         });
         cols.on('input', function() {
            startCol.attr({

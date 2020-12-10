@@ -158,11 +158,12 @@ else {
             startRow.val(startRowVal);
         });
         cols.on('input', function() {
-           startCol.attr({
+			startColVal = Math.min(startCol.val(), (cols.val() - 1));
+			startCol.attr({
                 max: cols.val() - 1,
-                value: cols.val() - 1
+                value: startColVal
             });
-            startCol.val(cols.val() - 1);
+            startCol.val(startColVal);
         });
     </script>
 </body>

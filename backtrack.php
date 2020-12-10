@@ -64,22 +64,22 @@ else {
                             <div class="form-group col-md-3">
                                 Rows (5-25):
                                 <input type="number" class="form-control" name="rows" id="rows" min="5" max="25"
-                                    value="<?php echo $rows; ?>" />
+                                    value="<?php echo $rows; ?>" required />
                             </div>
                             <div class="form-group col-md-3">
                                 Cols (5-25):
                                 <input type="number" class="form-control" name="cols" id="cols" min="5" max="25"
-                                    value="<?php echo $cols; ?>" />
+                                    value="<?php echo $cols; ?>" required />
                             </div>
                             <div class="form-group col-md-3">
                                 Starting Row:
                                 <input type="number" class="form-control"  name="startRow" id="startRow" min="1"
-                                    max="" value="<?php echo $startRow; ?>" />
+                                    max="" value="<?php echo $startRow; ?>" required />
                             </div>
                             <div class="form-group col-md-3">
                                 Starting Col:
                                 <input type="number" class="form-control"  name="startCol" id="startCol" min="1"
-                                    max="" value="<?php echo $startCol; ?>" />
+                                    max="" value="<?php echo $startCol; ?>" required />
                             </div>
                         </div>
 
@@ -87,7 +87,7 @@ else {
                         <div class="form-group col-md-6 mb-0">
                                 Seed:
                                 <input type="number" class="form-control"  name="seed" min="0"
-                                        value="<?php echo $seed; ?>" />
+                                        value="<?php echo $seed; ?>" required />
                             </div>
                         </div>
                     </div>
@@ -97,22 +97,22 @@ else {
                             <div class="form-group col-md-3 mt-2 mb-0">
                                 Left (1-20):
                                 <input type="number" class="form-control"  name="wOne" min="1" max="20"
-                                    value="<?php echo $wOne; ?>" />
+                                    value="<?php echo $wOne; ?>" required />
                             </div>
                             <div class="form-group col-md-3 mt-2 mb-0">
                                 Right (1-20):
                                 <input type="number" class="form-control"  name="wTwo" min="1" max="20"
-                                    value="<?php echo $wTwo; ?>" />
+                                    value="<?php echo $wTwo; ?>" required />
                             </div>
                             <div class="form-group col-md-3 mt-2 mb-0">
                                 Up (1-20):
                                 <input type="number" class="form-control"  name="wThree" min="1" max="20"
-                                    value="<?php echo $wThree; ?>" />
+                                    value="<?php echo $wThree; ?>" required />
                             </div>
                             <div class="form-group col-md-3 mt-2 mb-0">
                                 Down (1-20):
                                 <input type="number" class="form-control"  name="wFour" min="1" max="20"
-                                    value="<?php echo $wFour; ?>" />
+                                    value="<?php echo $wFour; ?>" required />
                             </div>
                         </div>
                     </div>

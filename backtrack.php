@@ -5,8 +5,8 @@ $rows = intval($_POST['rows'] ?? 10);
 $cols = intval($_POST['cols'] ?? 10);
 $seed = intval($_POST['seed'] ?? 0);
 
-$startRow = intval($_POST['startRow'] ?? 0);
-$startCol = intval($_POST['startCol'] ?? 0);
+$startRow = intval($_POST['startRow'] ?? 1);
+$startCol = intval($_POST['startCol'] ?? 1);
 
 $wOne = intval($_POST['wOne'] ?? 1);
 $wTwo = intval($_POST['wTwo'] ?? 1);
@@ -15,7 +15,7 @@ $wFour = intval($_POST['wFour'] ?? 1);
 
 
 // seed, xLen, yLen, startRow, startCol, direction weights 1-4
-exec(sprintf("./MazeGen.out backtrack $seed $cols $rows %d %d $wOne $wTwo $wThree $wFour", $startCol, $startRow));
+exec(sprintf("./MazeGen.out backtrack $seed $cols $rows %d %d $wOne $wTwo $wThree $wFour", $startCol - 1, $startRow - 1), $out, $return);
 
 if ($return) {
     $response = "Generation failed. :(";
@@ -73,12 +73,12 @@ else {
                             </div>
                             <div class="form-group col-md-3">
                                 Starting Row:
-                                <input type="number" class="form-control"  name="startRow" id="startRow" min="0"
+                                <input type="number" class="form-control"  name="startRow" id="startRow" min="1"
                                     max="" value="<?php echo $startRow; ?>" />
                             </div>
                             <div class="form-group col-md-3">
                                 Starting Col:
-                                <input type="number" class="form-control"  name="startCol" id="startCol" min="0"
+                                <input type="number" class="form-control"  name="startCol" id="startCol" min="1"
                                     max="" value="<?php echo $startCol; ?>" />
                             </div>
                         </div>
@@ -133,23 +133,23 @@ else {
         startCol = $('#startCol');
 
         // Let's set the max starting points right away.
-        startRow.attr('max', rows.val() - 1);
-        startCol.attr('max', cols.val() - 1);
+        startRow.attr('max', rows.val());
+        startCol.attr('max', cols.val());
 
         // If the values of Rows or Columns is changed,
         // update the max + val for the starting x + y.
         rows.on('input', function() {
-            startRowVal = Math.min(startRow.val(), (rows.val() - 1));
+            startRowVal = Math.min(startRow.val(), rows.val());
 			startRow.attr({
-                max: rows.val() - 1,
+                max: rows.val(),
                 value: startRowVal
             });
             startRow.val(startRowVal);
         });
         cols.on('input', function() {
-			startColVal = Math.min(startCol.val(), (cols.val() - 1));
+			startColVal = Math.min(startCol.val(), cols.val());
 			startCol.attr({
-                max: cols.val() - 1,
+                max: cols.val(),
                 value: startColVal
             });
             startCol.val(startColVal);

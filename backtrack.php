@@ -1,33 +1,22 @@
 <?php
 
 // Set Default Values
-$rows = $_POST['rows'] ?? 10;
-$cols = $_POST['cols'] ?? 10;
-$seed = $_POST['seed'] ?? 0;
+$rows = intval($_POST['rows'] ?? 10);
+$cols = intval($_POST['cols'] ?? 10);
+$seed = intval($_POST['seed'] ?? 0);
 
-$startRow = $_POST['startRow'] ?? 0;
-$startCol = $_POST['startCol'] ?? 0;
+$startRow = intval($_POST['startRow'] ?? 0);
+$startCol = intval($_POST['startCol'] ?? 0);
 
-$wOne = $_POST['wOne'] ?? 1;
-$wTwo = $_POST['wTwo'] ?? 1;
-$wThree = $_POST['wThree'] ?? 1;
-$wFour = $_POST['wFour'] ?? 1;
-
-$escRows = escapeshellarg($rows);
-$escCols = escapeshellarg($cols);
-$escSeed = escapeshellarg($seed);
-
-$escStartRow = escapeshellarg($startRow);
-$escStartCol = escapeshellarg($startCol);
-
-$escWOne = escapeshellarg($wOne);
-$escWTwo = escapeshellarg($wTwo);
-$escWThree = escapeshellarg($wThree);
-$escWFour = escapeshellarg($wFour);
+$wOne = intval($_POST['wOne'] ?? 1);
+$wTwo = intval($_POST['wTwo'] ?? 1);
+$wThree = intval($_POST['wThree'] ?? 1);
+$wFour = intval($_POST['wFour'] ?? 1);
 
 
 // seed, xLen, yLen, startRow, startCol, direction weights 1-4
-exec("./MazeGen.out backtrack $escSeed $escCols $escRows $escStartCol $escStartRow $escWOne $escWTwo $escWThree $escWFour", $out, $return);
+exec("./MazeGen.out backtrack $seed $cols $rows $startCol $startRow $wOne $wTwo $wThree $wFour", $out, $return);
+
 
 if ($return) {
     $response = "Generation failed. :(";

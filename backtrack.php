@@ -152,7 +152,7 @@ else {
         rows.on('input', function() {
             startRow.attr({
                 max: rows.val() - 1,
-                value: rows.val() - 1
+                value: 0
             });
             startRow.val(rows.val() - 1);
         });
@@ -161,7 +161,7 @@ else {
                 max: cols.val() - 1,
                 value: cols.val() - 1
             });
-            startCol.val(cols.val() - 1);
+            startCol.val(0);
         });
     </script>
 </body>

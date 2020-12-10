@@ -144,17 +144,17 @@ else {
         startCol = $('#startCol');
 
         // Let's set the max starting points right away.
-        x.attr('max', 0);
-        y.attr('max', 0);
+        startRow.attr('max', 0);
+        startCol.attr('max', 0);
 
         // If the values of Rows or Columns is changed,
         // update the max + val for the starting x + y.
         rows.on('input', function() {
             startRow.attr({
                 max: rows.val() - 1,
-                value: rows.val - 1
+                value: rows.val() - 1
             });
-            startRow.val(rows.val - 1);
+            startRow.val(rows.val() - 1);
         });
         cols.on('input', function() {
            startCol.attr({

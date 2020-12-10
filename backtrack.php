@@ -150,22 +150,18 @@ else {
         // If the values of Rows or Columns is changed,
         // update the max + val for the starting x + y.
         rows.on('input', function() {
-            xVal = Math.min (x, rows.val - 1);
-
-			x.attr({
+            x.attr({
                 max: rows.val() - 1,
-                value: xVal
+                value: Math.min (x, rows.val - 1)
             });
-            x.val(xVal);
+            x.val(Math.min (x, rows.val - 1));
         });
         cols.on('input', function() {
-            yVal = Math.min (y, cols.val() - 1);
-
-			y.attr({
+            y.attr({
                 max: cols.val() - 1,
-                value: yVal
+                value: Math.min (y, cols.val() - 1)
             });
-            y.val(yVal);
+            y.val(Math.min (y, cols.val() - 1));
         });
     </script>
 </body>

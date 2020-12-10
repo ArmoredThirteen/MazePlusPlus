@@ -151,8 +151,7 @@ else {
         // update the max + val for the starting x + y.
         rows.on('input', function() {
             startRow.attr({
-                max: rows.val() - 1,
-                value: 0
+                max: rows.val() - 1
             });
             startRow.val(rows.val() - 1);
         });
@@ -161,7 +160,6 @@ else {
                 max: cols.val() - 1,
                 value: cols.val() - 1
             });
-            startCol.val(0);
         });
     </script>
 </body>

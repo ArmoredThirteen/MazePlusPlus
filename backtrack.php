@@ -15,8 +15,7 @@ $wFour = intval($_POST['wFour'] ?? 1);
 
 
 // seed, xLen, yLen, startRow, startCol, direction weights 1-4
-exec("./MazeGen.out backtrack $seed $cols $rows $startCol $startRow $wOne $wTwo $wThree $wFour", $out, $return);
-
+exec(sprintf("./MazeGen.out backtrack $seed $cols $rows %d %d $wOne $wTwo $wThree $wFour", $startCol, $startRow));
 
 if ($return) {
     $response = "Generation failed. :(";
@@ -29,6 +28,7 @@ else {
     $image = "<img src='mazeImage.php?rows=$rows&cols=$cols&maze=$out[0]' alt='Generated Maze' />";
 }
 ?>
+
 
 <!doctype html>
 <html lang="en">

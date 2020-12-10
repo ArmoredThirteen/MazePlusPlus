@@ -84,12 +84,12 @@ else {
                             </div>
                             <div class="form-group col-md-3">
                                 Starting Row:
-                                <input type="number" class="form-control"  name="startRow" id="x" min="0"
+                                <input type="number" class="form-control"  name="startRow" id="startRow" min="0"
                                     max="" value="<?php echo $startRow; ?>" />
                             </div>
                             <div class="form-group col-md-3">
                                 Starting Col:
-                                <input type="number" class="form-control"  name="startCol" id="y" min="0"
+                                <input type="number" class="form-control"  name="startCol" id="startCol" min="0"
                                     max="" value="<?php echo $startCol; ?>" />
                             </div>
                         </div>
@@ -140,28 +140,28 @@ else {
     <script>
         rows = $('#rows');
         cols = $('#cols');
-        x = $('#x');
-        y = $('#y');
+        startRow = $('#startRow');
+        startCol = $('#startCol');
 
         // Let's set the max starting points right away.
-        x.attr('max', rows.val() - 1);
-        y.attr('max', cols.val() - 1);
+        x.attr('max', 0);
+        y.attr('max', 0);
 
         // If the values of Rows or Columns is changed,
         // update the max + val for the starting x + y.
         rows.on('input', function() {
-            x.attr({
+            startRow.attr({
                 max: rows.val() - 1,
-                value: Math.min (x, rows.val - 1)
+                value: rows.val - 1
             });
-            x.val(Math.min (x, rows.val - 1));
+            startRow.val(rows.val - 1);
         });
         cols.on('input', function() {
-            y.attr({
+           startCol.attr({
                 max: cols.val() - 1,
-                value: Math.min (y, cols.val() - 1)
+                value: cols.val() - 1
             });
-            y.val(Math.min (y, cols.val() - 1));
+            startCol.val(cols.val() - 1);
         });
     </script>
 </body>

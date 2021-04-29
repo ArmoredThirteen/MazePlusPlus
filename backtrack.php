@@ -25,7 +25,8 @@ if ($return) {
 }
 else {
     // Pass maze data to image generation page and display returned image
-    $image = "<img src='mazeImage.php?rows=$rows&cols=$cols&maze=$out[0]' alt='Generated Maze' />";
+    $height = ($rows + 0.5) * 24;
+    $image = "<img src='mazeImage.php?rows=$rows&cols=$cols&maze=$out[0]' style='height:$height px;' alt='Generated Maze' />";
 }
 ?>
 

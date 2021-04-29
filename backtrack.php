@@ -48,7 +48,7 @@ else {
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-9">
-                <div class="text-center" style='height:<?php $height ?>px; display:block;'>
+                <div class="text-center" style='height:<?php echo $height ?>px; display:block;'>
                     <?php if(isset($image)) echo $image; ?>
                 </div>
                 <?php if(isset($response)) { ?>

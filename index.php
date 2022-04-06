@@ -1,6 +1,6 @@
 <h1>Welcome to the Automated Maze Generation System 9000!</h1>
 
-<p>- Lovingly crafted by ArmoredThirteen (Delilah Beam).</p>
+<p>- Lovingly crafted by DJ Beam!</p>
 <br>
 
 <hr>

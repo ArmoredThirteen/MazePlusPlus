@@ -6,7 +6,7 @@
 <hr>
 
 <p>
-	Backtrack generator using C++
+	Backtrack method using C++ <a href="https://github.com/ArmoredThirteen/MazePlusPlus">(Source Code)</a>
 	<br>
 	<form method="post" action="backtrack.php">
 		<p><input type="submit" value="To the Backtrack!"/></p>
